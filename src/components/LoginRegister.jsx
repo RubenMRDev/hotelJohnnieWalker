@@ -34,15 +34,15 @@ const LoginRegister = () => {
                 <div className="flex justify-between border-b-2 pb-3 mb-6">
                     <button
                         onClick={() => setIsLogin(true)}
-                        className={`text-lg font-semibold px-4 py-1 ${isLogin ? 'border-b-4 border-yellow-500 text-gray-900' : 'text-gray-500'}`}
+                        className={`text-lg font-semibold px-4 py-1 ${isLogin ? 'border-b-4 border-yellow-500 text-gray-900' : 'text-gray-500 hover:text-gray-900'}`}
                     >
                         Inicia Sesión
                     </button>
                     <button
                         onClick={() => setIsLogin(false)}
-                        className={`text-lg font-semibold px-4 py-1 ${!isLogin ? 'border-b-4 border-yellow-500 text-gray-900' : 'text-gray-500'}`}
+                        className={`text-lg font-semibold px-4 py-1 ${!isLogin ? 'border-b-4 border-yellow-500 text-gray-900' : 'text-gray-500 hover:text-gray-900'}`}
                     >
-                        Registrarte
+                        Regístrarte
                     </button>
                 </div>
                 <form onSubmit={handleFormSubmit}>
@@ -109,7 +109,7 @@ const LoginRegister = () => {
                     )}
                     <button
                         type="submit"
-                        className="w-full bg-yellow-500 text-white font-semibold rounded-lg p-3 mt-4 hover:bg-yellow-600 focus:ring-2 focus:ring-yellow-400 focus:outline-none"
+                        className="w-full bg-[#D9B26A] text-white font-semibold rounded-lg p-3 mt-4 hover:bg-yellow-600 focus:ring-2 focus:ring-yellow-400 focus:outline-none"
                     >
                         {isLogin ? 'Entrar' : 'Registrar'}
                     </button>
