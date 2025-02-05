@@ -1,30 +1,31 @@
-import { useEffect } from "react";
+import React from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 
 const Map = () => {
-  useEffect(() => {
-    window.initMap = () => {
-      new window.google.maps.Map(document.getElementById("map"), {
-        center: { lat: 40.7128, lng: -74.0060 },
-        zoom: 10,
-      });
-    };
-    
-    const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=TU_CLAVE_API&callback=initMap`;
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-      window.initMap = undefined;
-    };
-  }, []);
-
   return (
-    <div id="map" style={{ height: "400px", width: "100%" }}></div>
+    <div 
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        width: '100%',}}
+    >
+      <MapContainer 
+        center={[36.510034987389005, -4.8861989382417566]} 
+        zoom={20} 
+        style={{ height: '35vh', width: '65%', border: '4px solid #A9A9A9', borderRadius: '30px' }}
+      >
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <Marker position={[36.510034987389005, -4.8861989382417566]}>
+          <Popup>Marbella</Popup>
+        </Marker>
+      </MapContainer>
+    </div>
   );
 };
-
 
 export default Map;
