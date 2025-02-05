@@ -1,9 +1,11 @@
-import React from 'react'
+import PreFooter from "../components/PreFooter";
 
 function LandingPage() {
-  return (
-    <p>Landing</p>
-  )
+	return (
+		<div>
+			<PreFooter />
+		</div>
+	);
 }
 
-export default LandingPage
+export default LandingPage;
