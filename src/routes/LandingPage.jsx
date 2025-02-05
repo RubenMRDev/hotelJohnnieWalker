@@ -1,8 +1,9 @@
 import React from 'react'
 
+import Header from '../components/Header'
 function LandingPage() {
   return (
-    <p>Landing</p>
+    <Header />
   )
 }
 
