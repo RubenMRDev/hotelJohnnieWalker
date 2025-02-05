@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./LoginRegister.css";
 
 const LoginRegister = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -28,18 +29,18 @@ const LoginRegister = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="bg-white rounded-2xl shadow-lg p-6 w-96">
-                <div className="flex justify-around border-b mb-6">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-200 to-gray-100">
+            <div className="bg-white rounded-2xl shadow-xl p-8 w-96">
+                <div className="flex justify-between border-b-2 pb-3 mb-6">
                     <button
                         onClick={() => setIsLogin(true)}
-                        className={`pb-2 text-lg font-semibold ${isLogin ? 'border-b-2 border-gray-800' : 'text-gray-500'}`}
+                        className={`text-lg font-semibold px-4 py-1 ${isLogin ? 'border-b-4 border-yellow-500 text-gray-900' : 'text-gray-500'}`}
                     >
                         Inicia Sesión
                     </button>
                     <button
                         onClick={() => setIsLogin(false)}
-                        className={`pb-2 text-lg font-semibold ${!isLogin ? 'border-b-2 border-gray-800' : 'text-gray-500'}`}
+                        className={`text-lg font-semibold px-4 py-1 ${!isLogin ? 'border-b-4 border-yellow-500 text-gray-900' : 'text-gray-500'}`}
                     >
                         Registrarte
                     </button>
@@ -53,7 +54,7 @@ const LoginRegister = () => {
                                 name="nombre"
                                 value={formData.nombre}
                                 onChange={handleInputChange}
-                                className="w-full border border-gray-300 rounded-lg p-2 mt-1"
+                                className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
                                 required
                             />
                         </div>
@@ -65,7 +66,7 @@ const LoginRegister = () => {
                             name="email"
                             value={formData.email}
                             onChange={handleInputChange}
-                            className="w-full border border-gray-300 rounded-lg p-2 mt-1"
+                            className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
                             required
                         />
                     </div>
@@ -76,7 +77,7 @@ const LoginRegister = () => {
                             name="password"
                             value={formData.password}
                             onChange={handleInputChange}
-                            className="w-full border border-gray-300 rounded-lg p-2 mt-1"
+                            className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
                             required
                         />
                     </div>
@@ -89,7 +90,7 @@ const LoginRegister = () => {
                                     name="repeatPassword"
                                     value={formData.repeatPassword}
                                     onChange={handleInputChange}
-                                    className="w-full border border-gray-300 rounded-lg p-2 mt-1"
+                                    className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
                                     required
                                 />
                             </div>
@@ -100,7 +101,7 @@ const LoginRegister = () => {
                                     name="telefono"
                                     value={formData.telefono}
                                     onChange={handleInputChange}
-                                    className="w-full border border-gray-300 rounded-lg p-2 mt-1"
+                                    className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
                                     required
                                 />
                             </div>
@@ -108,7 +109,7 @@ const LoginRegister = () => {
                     )}
                     <button
                         type="submit"
-                        className="w-full bg-yellow-500 text-white font-semibold rounded-lg p-2 mt-4 hover:bg-yellow-600"
+                        className="w-full bg-yellow-500 text-white font-semibold rounded-lg p-3 mt-4 hover:bg-yellow-600 focus:ring-2 focus:ring-yellow-400 focus:outline-none"
                     >
                         {isLogin ? 'Entrar' : 'Registrar'}
                     </button>
