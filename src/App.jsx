@@ -1,11 +1,11 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import LandingPage from './routes/Register.jsx';
-import Main from './routes/Main.js';
-import Profile from './routes/profile.js';
-import Login from './routes/Login.js';
+import Main from './routes/Main.jsx';
+import Profile from './routes/profile.jsx';
+import Login from './routes/Login.jsx';
 import Register from './routes/Register.jsx';
-import ReserveHotel from './routes/ReserveHotel.js';
+import ReserveHotel from './routes/ReserveHotel.jsx';
 import ReserveRestaurant from './routes/ReserveRestaurant.jsx';
 
 const App = () => {
