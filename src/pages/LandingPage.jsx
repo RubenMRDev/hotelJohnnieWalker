@@ -1,10 +1,14 @@
-import React from 'react'
-import Footer from '../components/footer/Footer'
+import React from "react";
+import Footer from "../components/footer/Footer";
+import Map from "../components/map/Map";
 
 function LandingPage() {
   return (
-    <Footer />
-  )
+    <>
+      <Map />
+      <Footer />
+    </>
+  );
 }
 
-export default LandingPage
+export default LandingPage;
