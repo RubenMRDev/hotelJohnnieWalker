@@ -1,4 +1,4 @@
-import PreFooter from "../components/PreFooter";
+import PreFooter from "../components/PreFooter/PreFooter.jsx";
 
 function LandingPage() {
 	return (
