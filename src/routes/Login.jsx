@@ -1,8 +1,9 @@
 import React from 'react'
+import LoginRegister from '../components/LoginRegister'
 
 function Login() {
   return (
-    <p>LoginForm</p>
+    <LoginRegister/>
   )
 }
 
