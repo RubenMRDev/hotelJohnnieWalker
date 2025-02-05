@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import LandingPage from './routes/Register.jsx';
+import LandingPage from './routes/LandingPage.jsx';
 import Main from './routes/Main.jsx';
 import Profile from './routes/profile.jsx';
 import Login from './routes/Login.jsx';
