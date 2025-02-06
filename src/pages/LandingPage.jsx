@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import InfoProfile from '../components/info-profile/Info-profile'; 
 
 function LandingPage() {
   return (
-    <p>Landing</p>
-  )
+    <div className="">
+      <InfoProfile />
+    </div>
+  );
 }
 
-export default LandingPage
+export default LandingPage;
