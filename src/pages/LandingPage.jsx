@@ -1,11 +1,11 @@
 import React from "react";
 import Footer from "../components/footer/Footer";
-import Map from "../components/map/Map";
+import DatePicker from "../components/date-picker/DatePicker";
 
 function LandingPage() {
   return (
     <>
-      <Map />
+      <DatePicker />
       <Footer />
     </>
   );
