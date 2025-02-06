@@ -1,9 +1,13 @@
 import React from 'react'
+import Restaurant from '../components/Restaurant/Restaurant'
 
-import Header from '../components/Header'
 function LandingPage() {
   return (
-    <Header />
+    <>
+    <p>LandingPage</p>
+    <Restaurant />
+    </>
+    
   )
 }
 
