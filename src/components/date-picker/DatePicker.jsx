@@ -6,17 +6,12 @@ import "./date-picker.css";
 function DatePickerComponent() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState({
-    hours: "06",
+    hours: "08",
     minutes: "00",
   });
 
-  const minuteOptions = Array.from({ length: 12 }, (_, index) =>
-    (index * 5).toString().padStart(2, "0")
-  );
-
-  const hourOptions = Array.from({ length: 18 }, (_, index) =>
-    (index + 6).toString().padStart(2, "0")
-  );
+  const minuteOptions = ["00", "15", "30", "45"];
+  const hourOptions = ["08", "09", "10", "14", "15", "18", "19", "20", "21", "22"];
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
