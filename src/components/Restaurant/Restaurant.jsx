@@ -6,114 +6,61 @@ const RestaurantReservation = () => {
   const [date, setDate] = useState("2025-07-12");
   const [time, setTime] = useState("");
   const [comments, setComments] = useState("");
-  const [alertMessage, setAlertMessage] = useState(null);
-
-  const handleSelectTime = (selectedTime) => {
-    setTime(selectedTime);
-    setAlertMessage(`Hora seleccionada: ${selectedTime}`);
-    setTimeout(() => setAlertMessage(null), 1500);
-  };
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const availableTimes = [
     "08:00", "09:00", "10:00", "14:00", "15:00", 
     "18:00", "19:00", "20:00", "21:00", "22:00"
   ];
 
-  const Card = ({ children, className }) => (
-    <div className={`p-4 bg-white rounded-2xl shadow-lg ${className}`}>{children}</div>
-  );
-
-  const Button = ({ children, onClick, className }) => (
-    <button onClick={onClick} className={`px-4 py-2 rounded ${className}`}>
-      {children}
-    </button>
-  );
-
-  const Input = ({ type, value, onChange, className }) => (
-    <input type={type} value={value} onChange={onChange} className={`border p-2 w-full rounded ${className}`} />
-  );
-
-  const Textarea = ({ value, onChange, placeholder, className }) => (
-    <textarea value={value} onChange={onChange} placeholder={placeholder} className={`border p-2 w-full rounded ${className}`} />
-  );
-
   return (
-    <div className="flex justify-center items-center h-screen bg-cover bg-center" style={{ backgroundImage: "url('/path-to-your-background-image.jpg')" }}>
-      <Card className="w-96 bg-white/90">
-        <div className="p-6">
-          <h2 className="text-xl font-semibold text-center mb-4">Reserva Restaurante</h2>
+    <div className="flex justify-center items-center h-screen bg-cover bg-center p-4" style={{ backgroundImage: "url('../src/assets/image/bg-restaurant.png')" }}>
+      <div className="w-96 bg-white p-6 rounded-2xl shadow-xl">
+        <h2 className="text-2xl font-semibold text-center mb-4 italic">Reserva Restaurante</h2>
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Adultos</label>
-            <Input
-              type="number"
-              value={adults}
-              onChange={(e) => setAdults(e.target.value)}
-            />
-          </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-1">Adultos</label>
+          <input type="number" value={adults} onChange={(e) => setAdults(e.target.value)} className="border p-2 w-full rounded" />
+        </div>
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Niños</label>
-            <Input
-              type="number"
-              value={children}
-              onChange={(e) => setChildren(e.target.value)}
-            />
-          </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-1">Niños</label>
+          <input type="number" value={children} onChange={(e) => setChildren(e.target.value)} className="border p-2 w-full rounded" />
+        </div>
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Fecha</label>
-            <Input
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-            />
-          </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-1">Fecha</label>
+          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="border p-2 w-full rounded" />
+        </div>
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Comentarios</label>
-            <Textarea
-              value={comments}
-              onChange={(e) => setComments(e.target.value)}
-              placeholder="Escriba aquí su comentario..."
-            />
-          </div>
-
-          <div className="mb-4">
-            <h3 className="text-lg font-medium mb-2 text-center">Horario</h3>
-            <div className="grid grid-cols-3 gap-2">
+        <div className="mb-4 relative">
+          <label className="block text-sm font-medium mb-1">Hora</label>
+          <input type="text" value={time} readOnly onClick={() => setShowDropdown(!showDropdown)} className="border p-2 w-full rounded cursor-pointer" placeholder="Seleccione hora" />
+          {showDropdown && (
+            <div className="absolute bg-white border rounded mt-1 w-full shadow-lg z-10">
               {availableTimes.map((timeSlot) => (
-                <Button
-                  key={timeSlot}
-                  onClick={() => handleSelectTime(timeSlot)}
-                  className={`w-full ${time === timeSlot ? 'bg-blue-500 text-white' : ''}`}
-                >
+                <div key={timeSlot} onClick={() => { setTime(timeSlot); setShowDropdown(false); }} className="p-2 hover:bg-gray-200 cursor-pointer">
                   {timeSlot}
-                </Button>
+                </div>
               ))}
-            </div>
-          </div>
-
-          <div className="flex justify-between mt-6">
-            <Button className="w-1/2 bg-gray-200 text-black mr-2">
-              Carta
-            </Button>
-            <Button className="w-1/2 bg-blue-500 text-white ml-2">
-              Reservar
-            </Button>
-          </div>
-
-          <div className="mt-4 text-center">
-            <Button className="text-sm text-blue-500">Volver</Button>
-          </div>
-
-          {alertMessage && (
-            <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
-              {alertMessage}
             </div>
           )}
         </div>
-      </Card>
+
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-1">Comentarios</label>
+          <textarea value={comments} onChange={(e) => setComments(e.target.value)} placeholder="Escriba aquí su comentario..." className="border p-2 w-full rounded" />
+        </div>
+
+        <div className="flex justify-between mt-6">
+          <button className="w-1/2 bg-[#D9B26A] text-white py-2 rounded mr-2">Carta</button>
+          <button className="w-1/2 bg-[#D9B26A] text-white py-2 rounded ml-2">Reservar</button>
+        </div>
+
+        <div className="mt-4 text-center">
+          <button className="text-sm text-gray-700 py-1 px-3 bg-gray-300 rounded">Volver</button>
+        </div>
+      </div>
     </div>
   );
 };
