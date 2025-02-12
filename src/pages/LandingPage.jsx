@@ -1,11 +1,12 @@
 import React from 'react'
-import Restaurant from '../components/Restaurant/Restaurant'
+import RestaurantCard from '../components/RestaurantCard/RestaurantCard'
+import InteriorViewCard from '../components/InteriorViewCard/InteriorViewCard'
 
 function LandingPage() {
   return (
     <>
     <p>LandingPage</p>
-    <Restaurant />
+      <InteriorViewCard />
     </>
     
   )
