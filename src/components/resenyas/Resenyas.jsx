@@ -1,46 +1,40 @@
 import React from "react";
-import "./Resenyas.css";
-import estrella from "../../assets/images/estrella-resenyas.png";
+import "./Reviews.css";
+import star from "../../assets/images/star-reviews.png";
 
-const Resenyas = ({ nombre, fecha, rating, texto }) => {
+const Reviews = ({ name, date, rating, text }) => {
 	return (
-		<div className="resena-container">
-			{/* Cabecera con línea - estrella - línea */}
-			<div className="resena-header">
+		<div className="review-container">
+			{/* Header with line - star - line */}
+			<div className="review-header">
 				<span className="line"></span>
-				<div className="estrella-wrapper">
-					<img
-						src={estrella}
-						alt="Estrella"
-						className="estrella-img"
-					/>
+				<div className="star-wrapper">
+					<img src={star} alt="Star" className="star-img" />
 				</div>
 				<span className="line"></span>
 			</div>
 
-			{/* Contenido en columna para móviles */}
-			<div className="resena-content">
-				<div className="resena-info">
-					<h3 className="nombre">{nombre}</h3>
-					<p className="fecha">{fecha}</p>
+			{/* Content in column for mobile */}
+			<div className="review-content">
+				<div className="review-info">
+					<h3 className="name">{name}</h3>
+					<p className="date">{date}</p>
 					<p className="rating">
 						{rating}{" "}
-						<span className="estrellas">
-							{generateStars(rating)}
-						</span>
+						<span className="stars">{generateStars(rating)}</span>
 					</p>
 				</div>
 
-				<p className="resena-texto">{texto}</p>
+				<p className="review-text">{text}</p>
 			</div>
 
-			{/* Paginación */}
-			<div className="resena-paginacion">
-				<span className="punto activo"></span>
-				<span className="punto"></span>
-				<span className="punto"></span>
-				<span className="punto"></span>
-				<span className="punto"></span>
+			{/* Pagination */}
+			<div className="review-pagination">
+				<span className="dot active"></span>
+				<span className="dot"></span>
+				<span className="dot"></span>
+				<span className="dot"></span>
+				<span className="dot"></span>
 			</div>
 		</div>
 	);
@@ -56,4 +50,4 @@ const generateStars = (rating) => {
 	);
 };
 
-export default Resenyas;
+export default Reviews;
