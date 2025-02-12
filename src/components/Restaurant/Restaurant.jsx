@@ -37,7 +37,7 @@ const RestaurantReservation = () => {
           <label className="block text-sm font-medium mb-1">Hora</label>
           <input type="text" value={time} readOnly onClick={() => setShowDropdown(!showDropdown)} className="border p-2 w-full rounded cursor-pointer" placeholder="Seleccione hora" />
           {showDropdown && (
-            <div className="absolute bg-white border rounded mt-1 w-full shadow-lg z-10">
+            <div className="absolute bg-white border rounded mt-1 w-full shadow-lg z-10 max-h-40 overflow-y-auto">
               {availableTimes.map((timeSlot) => (
                 <div key={timeSlot} onClick={() => { setTime(timeSlot); setShowDropdown(false); }} className="p-2 hover:bg-gray-200 cursor-pointer">
                   {timeSlot}
@@ -53,12 +53,12 @@ const RestaurantReservation = () => {
         </div>
 
         <div className="flex justify-between mt-6">
-          <button className="w-1/2 bg-[#D9B26A] text-white py-2 rounded mr-2">Carta</button>
-          <button className="w-1/2 bg-[#D9B26A] text-white py-2 rounded ml-2">Reservar</button>
+          <button className="w-1/2 bg-[#D9B26A] text-white hover:bg-yellow-600 py-2 rounded mr-2">Carta</button>
+          <button className="w-1/2 bg-[#D9B26A] text-white hover:bg-yellow-600 py-2 rounded ml-2">Reservar</button>
         </div>
 
         <div className="mt-4 text-center">
-          <button className="text-sm text-gray-700 py-1 px-3 bg-gray-300 rounded">Volver</button>
+          <button className="text-sm text-gray-700 py-1 px-3 bg-gray-300 hover:bg-gray-400 rounded">Volver</button>
         </div>
       </div>
     </div>
