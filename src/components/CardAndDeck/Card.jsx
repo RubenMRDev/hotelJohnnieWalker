@@ -1,5 +1,4 @@
 import React from 'react';
-import "./Card.css";
 
 const Card = ({ room, price, checkIn, checkOut, onCancel }) => {
     return (
