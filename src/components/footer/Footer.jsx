@@ -7,7 +7,7 @@ function Footer() {
       <div className="footer-content">
         <p className="hotel-name">&copy; Hotel Johnnie Walker</p>
         <a href="https://github.com/RubenMRDev/hotelJohnnieWalker" target="_blank">
-          <img className="image" src="/public/github.png" alt="Github logo"></img>
+          <img className="image" src="src/assets/images/github.png" alt="Github logo"></img>
         </a>
       </div>
     </footer>
