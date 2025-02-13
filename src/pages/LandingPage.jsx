@@ -1,5 +1,4 @@
 import React from 'react'
-import Footer from '../components/footer/Footer'
 
 function LandingPage() {
   return (
@@ -7,7 +6,6 @@ function LandingPage() {
     <p>LandingPage</p>
     </>
     
-    <Footer />
   )
 }
 
