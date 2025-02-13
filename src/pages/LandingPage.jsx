@@ -1,8 +1,9 @@
+import RestaurantCard from "../components/RestaurantCard/RestaurantCard";
 
 
 function LandingPage() {
   return (
-    <p>Landing Page</p>
+    <RestaurantCard />
   )
 }
 

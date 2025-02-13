@@ -1,58 +1,43 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const Restaurant = () => {
+const RestaurantCard = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
-
   const images = ["restaurant1.webp", "restaurant2.webp"];
 
   const nextImage = () => {
-    setDirection(1);
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
   const prevImage = () => {
-    setDirection(-1);
     setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
 
-  const variants = {
-    enter: (dir) => ({
-      x: dir > 0 ? 300 : -300,
-      opacity: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-    },
-    exit: (dir) => ({
-      x: dir > 0 ? -300 : 300,
-      opacity: 0,
-    }),
+  // Variantes para animación de desvanecimiento
+  const fadeVariants = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
   };
 
   return (
     <div className="relative w-full h-[400px] bg-gray-900 overflow-hidden">
-      {/* Imagen animada */}
       <div className="w-full h-full relative">
-        <AnimatePresence initial={false} custom={direction}>
+        <AnimatePresence>
           <motion.img
             key={images[currentIndex]}
             src={`src/assets/images/${images[currentIndex]}`}
             alt="Nuevo Restaurante"
             className="w-full h-full object-cover absolute"
-            custom={direction}
-            variants={variants}
-            initial="enter"
-            animate="center"
+            variants={fadeVariants}
+            initial="initial"
+            animate="animate"
             exit="exit"
-            transition={{ type: "tween", duration: 0.6 }}
+            transition={{ duration: 0.6 }}
           />
         </AnimatePresence>
       </div>
 
-      {/* Información del restaurante */}
       <div className="absolute top-8 left-8 flex items-center space-x-2 text-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +50,6 @@ const Restaurant = () => {
         <h1 className="text-xl font-semibold">Nuevo Restaurante</h1>
       </div>
 
-      {/* Flechas de navegación */}
       <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
         <button onClick={prevImage}>
           <svg
@@ -92,7 +76,6 @@ const Restaurant = () => {
         </button>
       </div>
 
-      {/* Botones de acción */}
       <div className="absolute bottom-8 w-full flex justify-center space-x-2 px-4">
         <button className="bg-white/10 hover:bg-white/50 hover:text-black transition duration-300 backdrop-blur-sm border border-white text-white font-bold px-2 py-2 rounded-2xl shadow-md text-xs sm:text-sm md:text-base">
           HORARIO
@@ -108,4 +91,4 @@ const Restaurant = () => {
   );
 };
 
-export default Restaurant;
+export default RestaurantCard;
