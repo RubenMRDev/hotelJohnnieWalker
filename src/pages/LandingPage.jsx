@@ -1,9 +1,9 @@
-import RestaurantCard from "../components/RestaurantCard/RestaurantCard";
+import LoginRegister from "../components/LoginRegister/LoginRegisterForm";
 
 
 function LandingPage() {
   return (
-    <RestaurantCard />
+    <LoginRegister />
   )
 }
 
