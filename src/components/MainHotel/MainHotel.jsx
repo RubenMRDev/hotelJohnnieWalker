@@ -1,12 +1,19 @@
 import React from "react";
-import 'MainHotel.css';
 
 const MainHotel = () => {
-    return(
-        <div className="flex justify-center items-center w-full bg-cover bg-center p-4" style={{ backgroundImage: "url('../src/assets/image/bg-restaurant.png')"}}>
-
-        </div>
-    );
+return (
+    <div
+        className="w-full h-screen bg-cover bg-center flex flex-col items-center justify-center text-white"
+        style={{ backgroundImage: `url('../src/assets/image/mainHotel.jpg')` }}
+    >
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center">
+            JOHNNIE WALKER<br className="hidden md:inline-block" />HOTEL
+        </h1>
+        <button className="bg-[#D9B26A] text-black px-9 py-3 text-lg font-semibold rounded-lg shadow-md hover:bg-yellow-600 transition">
+            Reservar
+        </button>
+    </div>
+);
 };
 
 export default MainHotel;
