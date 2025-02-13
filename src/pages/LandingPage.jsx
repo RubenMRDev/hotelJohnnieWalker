@@ -6,7 +6,7 @@ function LandingPage() {
   return (
     <>
       <Header />
-      <Landing></Landing>
+      <Landing />
     </>
   );
 }
