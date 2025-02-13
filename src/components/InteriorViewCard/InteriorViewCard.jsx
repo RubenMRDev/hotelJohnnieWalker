@@ -3,55 +3,35 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const InteriorViewCard = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
 
-  const images = ["hotelExterior1.jpg", "hotelExterior2.jpg "];
+  const images = ["hotelExterior1.jpg", "hotelExterior2.jpg"];
 
   const nextImage = () => {
-    setDirection(1);
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
   const prevImage = () => {
-    setDirection(-1);
     setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
 
-  const variants = {
-    enter: (dir) => ({
-      x: dir > 0 ? 300 : -300,
-      opacity: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-    },
-    exit: (dir) => ({
-      x: dir > 0 ? -300 : 300,
-      opacity: 0,
-    }),
-  };
-
   return (
-    <div className="flex justify-center items-center p-4 ">
+    <div className="flex justify-center items-center p-4">
       <div className="max-w-4xl w-full relative">
         {/* Título */}
         <h2 className="text-2xl font-semibold text-left mb-4">Vistas de interior:</h2>
 
-        {/* Imagen animada */}
+        {/* Imagen animada con fade in y fade out */}
         <div className="relative w-full h-[400px] bg-gray-900 overflow-hidden rounded-2xl shadow-lg">
-          <AnimatePresence initial={false} custom={direction}>
+          <AnimatePresence>
             <motion.img
               key={images[currentIndex]}
               src={`src/assets/images/${images[currentIndex]}`}
               alt="Nuevo Restaurante"
               className="w-full h-full object-cover absolute"
-              custom={direction}
-              variants={variants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ type: "tween", duration: 0.6 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8 }}
             />
           </AnimatePresence>
 
