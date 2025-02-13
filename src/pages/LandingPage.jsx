@@ -3,7 +3,7 @@ import LoginRegister from "../components/LoginRegister/LoginRegisterForm";
 
 function LandingPage() {
   return (
-    <LoginRegister />
+    <p>Landing</p>
   )
 }
 
