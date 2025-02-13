@@ -241,7 +241,7 @@ const LoginRegister = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-200 to-gray-100">
-            <div className="bg-white rounded-2xl shadow-xl p-8 w-96">
+            <div className="bg-white rounded-2xl shadow-xl p-8 w-96 ">
                 <div className="flex justify-between border-b-2 pb-3 mb-6">
                     <button
                         onClick={() => setIsLogin(true)}
