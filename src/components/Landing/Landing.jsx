@@ -7,7 +7,7 @@ const Landing = () => {
       <div className="relative min-h-screen">
         <img
           className="absolute top-0 left-0 w-full h-[900px] object-cover z-0"
-          src="/room2.jpg"
+          src="src/assets/images/room2.jpg"
           alt="Room of Johnnie Walker's hotel"
           style={{ filter: "blur(2px)" }}
         />
