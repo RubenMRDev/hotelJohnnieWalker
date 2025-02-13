@@ -3,8 +3,9 @@ import LoginRegister from "../components/LoginRegister/LoginRegisterForm";
 
 function LandingPage() {
   return (
-    <p>Landing</p>
-  )
+    <div className="">
+    </div>
+  );
 }
 
 export default LandingPage;

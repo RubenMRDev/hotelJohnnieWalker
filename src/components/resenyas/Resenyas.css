@@ -1,0 +1,96 @@
+.resena-container {
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    color: #000;
+    text-align: center;
+}
+
+.resena-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.line {
+    flex: 1;
+    height: 2px;
+    background-color: #000;
+    margin: 0 10px;
+}
+
+.estrella-wrapper {
+    width: 50px;
+    height: 50px;
+    background-color: #fbd433;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.estrella-img {
+    width: 25px;
+    height: 25px;
+}
+
+.resena-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.resena-info {
+    text-align: center;
+}
+
+.nombre {
+    margin: 0;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.fecha {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.rating {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.estrellas {
+    color: #000;
+}
+
+.resena-texto {
+    text-align: center;
+    line-height: 1.4;
+    font-size: 16px;
+    max-width: 90%;
+}
+
+.resena-paginacion {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.punto {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #fbd433;
+    display: inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.punto.activo {
+    background-color: #fbd433;
+}
