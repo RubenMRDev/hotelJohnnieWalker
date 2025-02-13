@@ -1,12 +1,12 @@
 import React from "react";
-import Footer from "../components/footer/Footer";
-import DatePicker from "../components/date-picker/DatePicker";
+import Header from "../components/Header/Header";
+import Landing from "../components/Landing/Landing";
 
 function LandingPage() {
   return (
     <>
-      <DatePicker />
-      <Footer />
+      <Header />
+      <Landing></Landing>
     </>
   );
 }
