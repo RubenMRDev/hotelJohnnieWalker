@@ -1,8 +1,9 @@
 import React from 'react'
+import Restaurant from '../components/Restaurant/Restaurant'
 
 function ReserveRestaurant() {
   return (
-    <p>ReserveRestaurant</p>
+    <Restaurant/>
   )
 }
 
