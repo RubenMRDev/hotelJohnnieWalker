@@ -11,10 +11,11 @@ describe("PreFooter Component", () => {
 
     test("Should contain the terms and conditions links", () => {
         render(<PreFooter />);
-        expect(screen.getByText(/Booking conditions/i)).toBeInTheDocument();
-        expect(screen.getByText(/Legal notice/i)).toBeInTheDocument();
-        expect(screen.getByText(/Usage policy/i)).toBeInTheDocument();
+        expect(screen.getByText(/Condiciones de reserva/i)).toBeInTheDocument();
+        expect(screen.getByText(/Aviso Legal/i)).toBeInTheDocument();
+        expect(screen.getByText(/Política de uso/i)).toBeInTheDocument();
     });
+    
 
     test("Should render the background image correctly", () => {
         render(<PreFooter />);
