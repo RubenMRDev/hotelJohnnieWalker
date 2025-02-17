@@ -1,9 +1,13 @@
 import React from 'react'
 import MainHotel from '../components/MainHotel/MainHotel'
+import MainRestaurant from '../components/MainRestaurant/MainRestaurant'
 
 function Main() {
   return (
-    <MainHotel/>
+    <div>
+      <MainHotel/>
+      <MainRestaurant/>
+    </div>
   )
 }
 
