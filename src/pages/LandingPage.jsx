@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "../components/footer/Footer";
-import DatePicker from "../components/date-picker/DatePicker";
+import DatePicker from "../components/Date-picker/DatePicker";
 
 function LandingPage() {
   return (
