@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import './RestaurantCard.css'
 
 const RestaurantCard = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const images = ["restaurant1.webp", "restaurant2.webp"];
+  const images = [
+    "https://res.cloudinary.com/dd5hetwb8/image/upload/v1739955279/restaurant2_iohn5l.webp",
+    "https://res.cloudinary.com/dd5hetwb8/image/upload/v1739958826/restaurant-6479818_skdtym.jpg"
+  ];
 
   const nextImage = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -13,29 +16,16 @@ const RestaurantCard = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
 
-  // Variantes para animación de desvanecimiento
-  const fadeVariants = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 },
-  };
-
   return (
     <div className="relative w-full h-[400px] bg-gray-900 overflow-hidden">
       <div className="w-full h-full relative">
-        <AnimatePresence>
-          <motion.img
-            key={images[currentIndex]}
-            src={`src/assets/images/${images[currentIndex]}`}
-            alt="Nuevo Restaurante"
-            className="w-full h-full object-cover absolute"
-            variants={fadeVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            transition={{ duration: 0.6 }}
-          />
-        </AnimatePresence>
+        {/* La key hace que el elemento se re-monte y ejecute la animación */}
+        <img
+          key={images[currentIndex]}
+          src={images[currentIndex]}
+          alt="Nuevo Restaurante"
+          className="w-full h-full object-cover absolute fade-in"
+        />
       </div>
 
       <div className="absolute top-8 left-8 flex items-center space-x-2 text-white">
@@ -82,7 +72,8 @@ const RestaurantCard = () => {
         </button>
         <button 
           onClick={() => window.location.href = '/reserverestaurant'} 
-          className="bg-white/10 hover:bg-white/60 hover:text-black transition duration-300 backdrop-blur-sm border border-white text-white font-bold px-2 py-2 rounded-2xl shadow-md text-xs sm:text-sm md:text-base">
+          className="bg-white/10 hover:bg-white/60 hover:text-black transition duration-300 backdrop-blur-sm border border-white text-white font-bold px-2 py-2 rounded-2xl shadow-md text-xs sm:text-sm md:text-base"
+        >
           VER DISPONIBILIDAD
         </button>
         <button className="bg-white/10 hover:bg-white/50 hover:text-black transition duration-300 backdrop-blur-sm border border-white text-white font-bold px-2 py-2 rounded-2xl shadow-md text-xs sm:text-sm md:text-base">

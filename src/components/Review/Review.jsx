@@ -7,7 +7,7 @@ const Resenyas = ({ nombre, fecha, calificacion, texto }) => {
 			<div className="flex items-center justify-center my-5">
 				<span className="flex-1 h-[2px] bg-black mx-2"></span>
 				<div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center">
-					<img src={estrella} alt="Estrella" className="w-6 h-6" />
+					<img src="https://res.cloudinary.com/dd5hetwb8/image/upload/v1739955279/estrella-resenyas_qwubvx.png" alt="Estrella" className="w-6 h-6" />
 				</div>
 				<span className="flex-1 h-[2px] bg-black mx-2"></span>
 			</div>
