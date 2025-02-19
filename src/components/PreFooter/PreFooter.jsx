@@ -14,7 +14,7 @@ function PreFooter() {
 			<div className="container-gradient">
 				<img
 					className="gradient-img"
-					src="src\assets\images\pre-footer-gradient-bg.png"
+					src="https://res.cloudinary.com/dd5hetwb8/image/upload/v1739955279/pre-footer-gradient-bg_jnhvs6.png"
 					alt=""
 				/>
 			</div>
