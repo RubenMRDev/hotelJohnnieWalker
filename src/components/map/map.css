@@ -1,0 +1,15 @@
+.map-container {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15%;
+  }
+  
+  .map {
+    height: 50vh;
+    width: 70%;
+    border: 2px solid grey;
+    border-radius: 20px;
+  }
+  
