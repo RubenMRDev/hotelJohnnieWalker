@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Card = ({ room, price, checkIn, checkOut, onCancel }) => {
+const CardAndDeck = ({ room, price, checkIn, checkOut, onCancel }) => {
     return (
         <div className="flex items-center bg-gray-100 rounded-2xl shadow-md p-4 w-full max-w-md sm:max-w-lg lg:max-w-xl mx-auto">
             <img
@@ -35,4 +35,4 @@ const Card = ({ room, price, checkIn, checkOut, onCancel }) => {
     );
 };
 
-export default Card;
+export default CardAndDeck;
