@@ -4,7 +4,6 @@ import "./Landing.css";
 const Landing = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  // Detectar el scroll para aplicar el efecto de desplazamiento
   const handleScroll = () => {
     setScrollPosition(window.scrollY);
   };
@@ -17,7 +16,7 @@ const Landing = () => {
   }, []);
 
   const calculateTranslation = () => {
-    const translateValue = scrollPosition / 1.5;
+    const translateValue = scrollPosition / 2.5;
     return `${translateValue}px`;
   };
 
@@ -28,7 +27,6 @@ const Landing = () => {
           className="absolute top-0 left-0 w-full h-[750px] bg-cover bg-center z-0"
           style={{
             backgroundImage: "url('src/assets/images/room.jpg')",
-            backgroundAttachment: "fixed",
             backgroundPosition: "center",
           }}
         ></div>
@@ -62,25 +60,28 @@ const Landing = () => {
         }}
       >
 
-        <div
-          className="left-half w-1/2 h-full bg-cover bg-center"
-          style={{
-            backgroundImage: "url('src/assets/images/leaves.png')",
-            backgroundPosition: "left",
-            transform: `translateX(-${calculateTranslation()})`,
-            transition: "transform 0.2s ease-out",
-          }}
-        ></div>
+<div
+  className="left-half w-[80vw] h-[30vh] bg-cover bg-center"
+  style={{
+    backgroundImage: "url('src/assets/images/leafgreen.png')",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    transform: `translateX(-${calculateTranslation()}) scaleX(-1)`,
+    transition: "transform 0.2s ease-out",
+  }}
+></div>
 
-        <div
-          className="right-half w-1/2 h-full bg-cover bg-center"
-          style={{
-            backgroundImage: "url('src/assets/images/leaves.png')",
-            backgroundPosition: "right",
-            transform: `translateX(${calculateTranslation()})`,
-            transition: "transform 0.2s ease-out",
-          }}
-        ></div>
+<div
+  className="right-half w-[80vw] h-[30vh] bg-cover bg-center"
+  style={{
+    backgroundImage: "url('src/assets/images/leafgreen.png')",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    transform: `translateX(${calculateTranslation()})`,
+    transition: "transform 0.2s ease-out",
+  }}
+></div>
+
       </div>
 
       <div className="flex items-center justify-center space-x-4 mt-25 gap-30 mr-10 ml-10">
