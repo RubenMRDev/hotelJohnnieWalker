@@ -19,7 +19,6 @@ const RestaurantCard = () => {
   return (
     <div className="relative w-full h-[400px] bg-gray-900 overflow-hidden">
       <div className="w-full h-full relative">
-        {/* La key hace que el elemento se re-monte y ejecute la animación */}
         <img
           key={images[currentIndex]}
           src={images[currentIndex]}

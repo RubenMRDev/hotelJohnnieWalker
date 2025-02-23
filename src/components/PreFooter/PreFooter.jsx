@@ -38,13 +38,7 @@ function PreFooter() {
           Política de uso
         </a>
       </div>
-      <div className="container-gradient">
-        <img
-          className="gradient-img absolute bottom-0 left-0 w-full h-auto object-cover opacity-80 z-[-1]"
-          src="https://res.cloudinary.com/dd5hetwb8/image/upload/v1739955279/pre-footer-gradient-bg_jnhvs6.png"
-          alt=""
-        />
-      </div>
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#0C1440]/100 to-transparent"></div>
     </div>
   );
 }
