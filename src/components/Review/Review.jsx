@@ -2,48 +2,60 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useEffect, useState } from "react";
 
 const ResenyasCarousel = ({ resenyas = [] }) => {
+  const [showArrows, setShowArrows] = useState(window.innerWidth >= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setShowArrows(window.innerWidth >= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   if (!resenyas || resenyas.length === 0) {
     return <p>No hay reseñas disponibles.</p>;
   }
+
   const CustomPrevArrow = (props) => {
-	const { className, style, onClick } = props;
-	return (
-	  <div
-		className={`${className} bg-gray-800 p-2 rounded-full absolute left-0 z-10 cursor-pointer`}
-		style={{ ...style, display: "block", backgroundColor: "rgba(0,0,0,0.2)" }}
-		onClick={onClick}
-	  >
-		◀
-	  </div>
-	);
+    const { className, style, onClick } = props;
+    return showArrows ? (
+      <div
+        className={`${className} bg-gray-800 p-2 rounded-full absolute left-0 z-10 cursor-pointer`}
+        style={{ ...style, backgroundColor: "rgba(0,0,0,0.2)" }}
+        onClick={onClick}
+      >
+        ◀
+      </div>
+    ) : null;
   };
-  
+
   const CustomNextArrow = (props) => {
-	const { className, style, onClick } = props;
-	return (
-	  <div
-		className={`${className} bg-gray-800 p-2 rounded-full absolute right-0 z-10 cursor-pointer`}
-		style={{ ...style, display: "block", backgroundColor: "rgba(0,0,0,0.2)" }}
-		onClick={onClick}
-	  >
-		▶
-	  </div>
-	);
+    const { className, style, onClick } = props;
+    return showArrows ? (
+      <div
+        className={`${className} bg-gray-800 p-2 rounded-full absolute right-0 z-10 cursor-pointer`}
+        style={{ ...style, backgroundColor: "rgba(0,0,0,0.2)" }}
+        onClick={onClick}
+      >
+        ▶
+      </div>
+    ) : null;
   };
+
   const settings = {
-	infinite: true,
-	slidesToShow: 1,
-	slidesToScroll: 1,
-	speed: 1000,
-	autoplay: true,
-	autoplaySpeed: 4000,
-	arrows: true,
-	prevArrow: <CustomPrevArrow />,
-	nextArrow: <CustomNextArrow />,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    speed: 1000,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    arrows: showArrows,
+    prevArrow: <CustomPrevArrow />, 
+    nextArrow: <CustomNextArrow />, 
   };
-  
 
   return (
     <div className="w-full max-w-4xl mx-auto">
@@ -75,7 +87,7 @@ const Resenya = ({ name, date, rating, text }) => {
           <h3 className="m-0 font-bold text-lg">{name}</h3>
           <p className="my-1 text-sm">{date}</p>
           <p className="font-bold text-sm">
-            {rating}{" "}
+            {rating} {" "}
             <span className="text-black">{generarEstrellas(rating)}</span>
           </p>
         </div>
