@@ -23,7 +23,7 @@ const Header = () => {
                 </div>
             </header>
 
-            <div className="absolute top-20 left-0 w-full h-60 bg-[url('src/assets/images/fade.png')] bg-cover bg-center opacity-100 z-10"></div>
+            <div className="absolute top-20 left-0 w-full h-30 bg-[url('src/assets/images/fade.png')] bg-cover bg-center opacity-100 z-10"></div>
         </>
     );
 };
