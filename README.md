@@ -1,8 +1,44 @@
-# React + Vite
+# Hotel Johnnie Walker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the Hotel Johnnie Walker project! This application allows users to make reservations for both hotel rooms and the hotel's restaurant.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Hotel Room Reservations**: Users can view available rooms, check availability, and make reservations.
+- **Restaurant Reservations**: Users can view available time slots and reserve tables at the hotel's restaurant.
+- **User Authentication**: User registration and login functionalities.
+
+## Technologies Used
+
+- **Backend**: Fake-API
+- **Frontend**: React & Tailwind
+
+## Installation
+
+1. **Clone the Repository**:
+
+    ```bash
+    git clone https://github.com/RubenMRDev/hotelJohnnieWalker.git
+    cd hotelJohnnieWalker
+    ```
+
+2. **Set Up the Environment**:
+
+    ```bash
+    npm install
+    ```
+
+3. **Start the Application**:
+
+    ```bash
+    npm run dev
+    ```
+
+## Team Members
+
+
+- [Rubén Martín Ruiz](https://github.com/RubenMRDev)  (Scrum Master)
+- [Jairo Alexandro Saborito Franco](https://github.com/JairoAlexandro/JairoAlexandro) (Product Owner)
+- [Adrián Pérez Agredano](https://github.com/Sk4is)
+- [Israel Abad Barrera](https://github.com/Israelab01)
+- [Samuel Utrilla Núñez](https://github.com/samuel-un)
