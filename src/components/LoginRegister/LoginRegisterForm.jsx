@@ -43,8 +43,9 @@ const LoginRegister = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-200 to-gray-100">
-            <div className="bg-white rounded-2xl shadow-xl p-8 w-96 ">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-200 to-gray-100 relative">
+            <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-[#0C1440] to-transparent"></div>
+            <div className="bg-white rounded-2xl shadow-xl p-8 w-96 relative z-10">
                 <div className="flex justify-between border-b-2 pb-3 mb-6">
                     <button
                         onClick={() => setIsLogin(true)}
@@ -153,6 +154,7 @@ const LoginRegister = () => {
                     </button>
                 </form>
             </div>
+            <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-[#0C1440] to-transparent"></div>
         </div>
     );
 };
