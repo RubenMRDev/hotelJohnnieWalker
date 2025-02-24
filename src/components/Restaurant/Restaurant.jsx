@@ -14,8 +14,11 @@ const RestaurantReservation = () => {
   ];
 
   return (
-    <div className="flex justify-center items-center h-screen bg-cover bg-center p-4" style={{ backgroundImage: "url('https://res.cloudinary.com/dd5hetwb8/image/upload/v1740388764/6d675de2-b8a5-40ff-94a0-9ac191e374b8.png')" }}>
-      <div className="w-96 bg-white p-6 rounded-2xl shadow-xl">
+    <div className="relative flex justify-center items-center min-h-screen bg-cover bg-center p-4" style={{ backgroundImage: "url('https://res.cloudinary.com/dd5hetwb8/image/upload/v1740388764/6d675de2-b8a5-40ff-94a0-9ac191e374b8.png')" }}>
+      <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-[#0C1440] to-transparent pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-[#0C1440] to-transparent pointer-events-none"></div>
+      
+      <div className="relative z-10 w-96 bg-white p-6 rounded-2xl shadow-xl">
         <h2 className="text-2xl font-semibold text-center mb-4 italic">Reserva Restaurante</h2>
 
         <div className="mb-4">
@@ -37,7 +40,7 @@ const RestaurantReservation = () => {
           <label className="block text-sm font-medium mb-1">Hora</label>
           <input type="text" value={time} readOnly onClick={() => setShowDropdown(!showDropdown)} className="border p-2 w-full rounded cursor-pointer" placeholder="Seleccione hora" />
           {showDropdown && (
-            <div className="absolute bg-white border rounded mt-1 w-full shadow-lg z-10 max-h-40 overflow-y-auto">
+            <div className="absolute bg-white border rounded mt-1 w-full shadow-lg z-20 max-h-40 overflow-y-auto">
               {availableTimes.map((timeSlot) => (
                 <div key={timeSlot} onClick={() => { setTime(timeSlot); setShowDropdown(false); }} className="p-2 hover:bg-gray-200 cursor-pointer">
                   {timeSlot}
