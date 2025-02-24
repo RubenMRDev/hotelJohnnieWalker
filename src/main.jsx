@@ -7,8 +7,12 @@ import Footer from './components/Footer/Footer.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Header/>
-    <RouterProvider router={Router} />
-    <Footer />
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main className="flex-grow">
+        <RouterProvider router={Router} />
+      </main>
+      <Footer />
+    </div>
   </React.StrictMode>
 );
