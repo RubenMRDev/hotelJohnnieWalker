@@ -35,14 +35,14 @@ const Landing = () => {
 
         <div className="flex flex-col items-center justify-center min-h-screen text-white z-10 relative pb-20">
           <h1
-            className="text-3xl sm:text-4xl md:text-5xl font-bold"
-            style={{ textShadow: "3px 3px 4px rgba(0, 0, 0, 0.5)" }}
+            className="text-3xl sm:text-5xl md:text-5xl font-bold"
+            style={{ textShadow: "6px 6px 3px rgba(0, 0, 0, 0.5)" }}
           >
             JOHNNIE WALKER
           </h1>
           <h1
-            className="text-3xl sm:text-4xl md:text-5xl font-bold"
-            style={{ textShadow: "3px 3px 4px rgba(0, 0, 0, 0.5)" }}
+            className="text-3xl sm:text-5xl md:text-5xl font-bold"
+            style={{ textShadow: "6px 6px 3px rgba(0, 0, 0, 0.5)" }}
           >
             HOTEL
           </h1>
@@ -89,7 +89,7 @@ const Landing = () => {
       </div>
 
       <div className="flex items-center justify-center mt-6 sm:mt-25">
-        <h2 className="text-center text-xl sm:text-3xl mr-15 ml-15">
+        <h2 className="text-center text-xl sm:text-3xl mr-20 ml-20">
           Disfruta de vistas espectaculares al mar, habitaciones de lujo y
           servicios exclusivos en un ambiente relajado y sofisticado. Vive una
           experiencia única donde el sonido de las olas y la comodidad se
