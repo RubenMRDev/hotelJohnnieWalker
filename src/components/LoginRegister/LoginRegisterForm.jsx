@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
-import CountryNumbers from '../../data/CountryNumbers.json'; // Asegúrate de que la ruta sea correcta
+import Swal from 'sweetalert2'; // Add this import
+import CountryNumbers from '../../data/CountryNumbers.json';
+import credentials from '../../data/credentials.json';
 
 const LoginRegister = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -10,11 +12,11 @@ const LoginRegister = () => {
         password: '',
         repeatPassword: '',
         telefono: '',
-        countryCode: '+34', 
+        countryCode: '+34',
     });
 
     const countryOptions = Object.entries(CountryNumbers).map(([country, details]) => ({
-        value: details.dialCode, 
+        value: details.dialCode,
         label: `${country} (${details.dialCode})`,
     }));
 
@@ -36,7 +38,18 @@ const LoginRegister = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         if (isLogin) {
-            console.log('Logging in with', formData);
+            if (formData.email === credentials.admin.email && 
+                formData.password === credentials.admin.password) {
+                window.location.href = '/profile';
+            } else {
+                // Replace console.log with SweetAlert
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Credenciales erróneas',
+                    confirmButtonColor: '#D9B26A',
+                });
+            }
         } else {
             console.log('Registering with', formData);
         }
@@ -122,9 +135,9 @@ const LoginRegister = () => {
                                             styles={{
                                                 menu: (base) => ({
                                                     ...base,
-                                                    zIndex: 9999, 
+                                                    zIndex: 9999,
                                                     width: 'auto',
-                                                    maxWidth: 'none', 
+                                                    maxWidth: 'none',
                                                 }),
                                                 menuList: (base) => ({ 
                                                     ...base,
