@@ -33,7 +33,7 @@ const Landing = () => {
 
         <div className="absolute top-0 left-0 w-full h-[750px] sm:h-[750px] md:h-[650px] lg:h-[750px] bg-black opacity-10 z-1"></div>
 
-        <div className="flex flex-col items-center justify-center min-h-screen text-white z-10 relative pb-25">
+        <div className="flex flex-col items-center justify-center min-h-screen text-white z-10 relative pb-20">
           <h1
             className="text-3xl sm:text-4xl md:text-5xl font-bold"
             style={{ textShadow: "3px 3px 4px rgba(0, 0, 0, 0.5)" }}
@@ -46,7 +46,7 @@ const Landing = () => {
           >
             HOTEL
           </h1>
-          <button className="mt-6 sm:mt-10 text-xl sm:text-2xl px-6 py-2 bg-[#E9ECEF] text-[#475E75] rounded-md hover:bg-[#D9B26A] hover:text-[#000000] transition-all duration-300 font-bold shadow-lg">
+          <button className="mt-6 sm:mt-15 text-xl sm:text-2xl px-6 py-2 bg-[#E9ECEF] text-[#475E75] rounded-md hover:bg-[#D9B26A] hover:text-[#000000] transition-all duration-300 font-bold shadow-lg">
             Empezar
           </button>
         </div>
@@ -88,8 +88,8 @@ const Landing = () => {
         <h3 className="text-lg sm:text-xl text-center">Pago directo en el hotel</h3>
       </div>
 
-      <div className="flex items-center justify-center mt-6 sm:mt-10">
-        <h2 className="text-center text-xl sm:text-2xl mr-10 ml-10">
+      <div className="flex items-center justify-center mt-6 sm:mt-25">
+        <h2 className="text-center text-xl sm:text-3xl mr-15 ml-15">
           Disfruta de vistas espectaculares al mar, habitaciones de lujo y
           servicios exclusivos en un ambiente relajado y sofisticado. Vive una
           experiencia única donde el sonido de las olas y la comodidad se
