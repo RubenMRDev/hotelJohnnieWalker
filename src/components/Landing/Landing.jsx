@@ -24,16 +24,16 @@ const Landing = () => {
     <>
       <div className="relative min-h-screen">
         <div
-          className="absolute top-0 left-0 w-full h-[750px] sm:h-[600px] md:h-[650px] lg:h-[750px] bg-cover bg-center z-0"
+          className="absolute top-0 left-0 w-full h-[750px] sm:h-[750px] md:h-[650px] lg:h-[750px] bg-cover bg-center z-0"
           style={{
             backgroundImage: "url('src/assets/images/room.jpg')",
             backgroundPosition: "center",
           }}
         ></div>
 
-        <div className="absolute top-0 left-0 w-full h-[750px] sm:h-[600px] md:h-[650px] lg:h-[750px] bg-black opacity-10 z-1"></div>
+        <div className="absolute top-0 left-0 w-full h-[750px] sm:h-[750px] md:h-[650px] lg:h-[750px] bg-black opacity-10 z-1"></div>
 
-        <div className="flex flex-col items-center justify-center min-h-screen text-white z-10 relative">
+        <div className="flex flex-col items-center justify-center min-h-screen text-white z-10 relative pb-25">
           <h1
             className="text-3xl sm:text-4xl md:text-5xl font-bold"
             style={{ textShadow: "3px 3px 4px rgba(0, 0, 0, 0.5)" }}
@@ -53,7 +53,7 @@ const Landing = () => {
       </div>
 
       <div
-        className="leaves-background-container absolute top-[831px] sm:top-[680px] w-full h-[250px] sm:h-[200px] z-0 overflow-x-hidden overflow-y-hidden"
+        className="leaves-background-container absolute top-[831px] sm:top-[830px] w-full h-[250px] sm:h-[200px] z-0 overflow-x-hidden overflow-y-hidden"
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -82,7 +82,7 @@ const Landing = () => {
         ></div>
       </div>
 
-      <div className="flex items-center justify-center space-x-4 mt-30 sm:mt-1 gap-6 mr-10 ml-10">
+      <div className="flex items-center justify-center space-x-4 mt-30 sm:mt-25 gap-6 mr-10 ml-10">
         <h3 className="text-lg sm:text-xl text-center">Reserva 100% segura</h3>
         <h3 className="text-lg sm:text-xl text-center">Sin gastos de gestión</h3>
         <h3 className="text-lg sm:text-xl text-center">Pago directo en el hotel</h3>
