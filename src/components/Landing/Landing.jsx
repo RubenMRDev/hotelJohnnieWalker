@@ -53,7 +53,7 @@ const Landing = () => {
       </div>
 
       <div
-        className="leaves-background-container absolute top-[831px] sm:top-[680px] w-full h-[250px] sm:h-[200px] z-0"
+        className="leaves-background-container absolute top-[831px] sm:top-[680px] w-full h-[250px] sm:h-[200px] z-0 overflow-x-hidden overflow-y-hidden"
         style={{
           display: "flex",
           justifyContent: "space-between",
