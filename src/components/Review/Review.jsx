@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 const ResenyasCarousel = ({ resenyas = [] }) => {
   const [showArrows, setShowArrows] = useState(window.innerWidth >= 768);
+  const [currentSlide, setCurrentSlide] = useState(0); // Nuevo estado para la diapositiva actual
 
   useEffect(() => {
     const handleResize = () => {
@@ -54,7 +55,8 @@ const ResenyasCarousel = ({ resenyas = [] }) => {
     autoplaySpeed: 4000,
     arrows: showArrows,
     prevArrow: <CustomPrevArrow />, 
-    nextArrow: <CustomNextArrow />, 
+    nextArrow: <CustomNextArrow />,
+    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex), // Actualiza el estado al cambiar de diapositiva
   };
 
   return (
@@ -75,6 +77,17 @@ const ResenyasCarousel = ({ resenyas = [] }) => {
           <Resenya key={index} {...resenya} />
         ))}
       </Slider>
+      {/* Indicadores de puntos */}
+      <div className="flex justify-center mt-4 gap-2">
+        {resenyas.map((_, index) => (
+          <div
+            key={index}
+            className={`w-3 h-3 rounded-full ${
+              index === currentSlide ? "bg-gray-700" : "bg-gray-300"
+            }`}
+          />
+        ))}
+      </div>
     </div>
   );
 };

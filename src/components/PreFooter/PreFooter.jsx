@@ -3,7 +3,7 @@ import React from 'react';
 function PreFooter() {
   return (
     <div
-      className="pre-footer bg-cover bg-center flex flex-col justify-center items-center h-80 text-white text-center relative z-2"
+      className="pre-footer bg-cover bg-center flex flex-col justify-center items-center mt-6 h-80 text-white text-center relative z-2"
       style={{
         backgroundImage:
           'url("https://res.cloudinary.com/dd5hetwb8/image/upload/v1739955280/pre-footer-bg_da5lam.png")',
