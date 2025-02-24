@@ -4,7 +4,7 @@ const MainHotel = () => {
   return (
     <div
       className="w-full h-screen bg-cover bg-center flex flex-col items-center justify-center text-white relative"
-      style={{ backgroundImage: `url('../src/assets/image/mainHotel.jpg')` }}
+      style={{ backgroundImage: `url('https://res.cloudinary.com/dd5hetwb8/image/upload/50aeda3e-bc7b-4dee-9e38-99c7ec1c3b6b.png')` }}
     >
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#0C1440] to-transparent"></div>
       <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center">

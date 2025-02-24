@@ -4,7 +4,7 @@ const MainRestaurant = () => {
   return (
     <div
       className="w-full h-screen bg-cover bg-center flex flex-col items-center justify-center text-white relative"
-      style={{ backgroundImage: `url('../src/assets/image/mainRestaurant.jpg')` }}
+      style={{ backgroundImage: `url('https://res.cloudinary.com/dd5hetwb8/image/upload/v1740387399/df1a678c-20ef-4446-8f56-1d3ab0207df2.png')` }}
     >
       <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center">
         JOHNNIE WALKER

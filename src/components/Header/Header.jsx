@@ -8,7 +8,7 @@ return (
             <a href="/">
             <img
                 className="logo max-w-[120px]"
-                src="src/assets/images/logo.png"
+                src="https://res.cloudinary.com/dd5hetwb8/image/upload/logo_fqorec.png"
                 alt="logo hotel Jhonny Walker"
             />
             </a>

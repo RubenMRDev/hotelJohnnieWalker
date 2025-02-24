@@ -14,7 +14,7 @@ const RestaurantReservation = () => {
   ];
 
   return (
-    <div className="flex justify-center items-center h-screen bg-cover bg-center p-4" style={{ backgroundImage: "url('../src/assets/image/bg-restaurant.png')" }}>
+    <div className="flex justify-center items-center h-screen bg-cover bg-center p-4" style={{ backgroundImage: "url('https://res.cloudinary.com/dd5hetwb8/image/upload/v1740388764/6d675de2-b8a5-40ff-94a0-9ac191e374b8.png')" }}>
       <div className="w-96 bg-white p-6 rounded-2xl shadow-xl">
         <h2 className="text-2xl font-semibold text-center mb-4 italic">Reserva Restaurante</h2>
 
