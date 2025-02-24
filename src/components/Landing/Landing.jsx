@@ -76,7 +76,7 @@ const Landing = () => {
         ></div>
 
         <div
-          className="right-half lg:w-[25%] lg:h-[100] w-[90%] h-[30vh] bg-cover bg-center"
+          className="right-half lg:w-[25%] lg:h-[100] w-[90%] h-[100%] bg-cover bg-center"
           style={{
             backgroundImage: "url('src/assets/images/leafgreen.png')",
             backgroundPosition: "center",
