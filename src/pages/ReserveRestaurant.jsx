@@ -1,5 +1,5 @@
 import React from 'react'
-import Restaurant from '../components/Restaurant/Restaurant'
+import Restaurant from '../components/Restaurant/Restaurant.jsx'
 
 function ReserveRestaurant() {
   return (
