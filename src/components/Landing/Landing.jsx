@@ -46,25 +46,30 @@ const Landing = () => {
       <div className="grid grid-cols-1 grid-rows-1 h-[30vh]">
         {/* Animación de hojas */}
         <div className="col-start-1 row-start-1 flex justify-between items-center">
-          <div
-            className="w-[80vw] sm:w-[90vw] h-full bg-cover bg-center"
-            style={{
-              backgroundImage: "url('src/assets/images/leafgreen.png')",
-              transform: `translateX(-${calculateTranslation()}) scaleX(-1)`,
-              transition: "transform 0.2s ease-out",
-            }}
-          ></div>
-          <div
-            className="w-[80vw] sm:w-[90vw] h-full bg-cover bg-center"
-            style={{
-              backgroundImage: "url('src/assets/images/leafgreen.png')",
-              transform: `translateX(${calculateTranslation()})`,
-              transition: "transform 0.2s ease-out",
-            }}
-          ></div>
+        <div
+          className="left-half lg:w-[25%] lg:h-[100] w-[90%] h-[100%] bg-cover bg-center"
+          style={{
+            backgroundImage: "url('src/assets/images/leafgreen.png')",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            transform: `translateX(-${calculateTranslation()}) scaleX(-1)`,
+            transition: "transform 0.2s ease-out",
+          }}
+        ></div>
+
+        <div
+          className="right-half lg:w-[25%] lg:h-[100] w-[90%] h-[100%] bg-cover bg-center"
+          style={{
+            backgroundImage: "url('src/assets/images/leafgreen.png')",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            transform: `translateX(${calculateTranslation()})`,
+            transition: "transform 0.2s ease-out",
+          }}
+        ></div>
         </div>
         {/* Textos superpuestos */}
-        <div className="col-start-1 row-start-1 flex items-center justify-center space-x-4 mx-10">
+        <div className="col-start-1 row-start-1 flex items-center justify-center space-x-4 mx-10 lg:gap-50">
           <h3 className="text-lg sm:text-xl text-center">
             Reserva 100% segura
           </h3>
@@ -78,8 +83,8 @@ const Landing = () => {
       </div>
 
       {/* Contenedor del contenido adicional */}
-      <div className="flex items-center justify-center mt-6 sm:mt-10 mx-10">
-        <h2 className="text-center text-xl sm:text-2xl">
+      <div className="flex items-center justify-center mt-6 sm:mt-8 mx-10">
+        <h2 className="text-center text-xl sm:text-2xl mb-25">
           Disfruta de vistas espectaculares al mar, habitaciones de lujo y servicios exclusivos en un ambiente relajado y sofisticado. Vive una experiencia única donde el sonido de las olas y la comodidad se encuentran. ¡Tu escape perfecto comienza aquí!
         </h2>
       </div>
