@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Swal from 'sweetalert2';
 
 const RestaurantReservation = () => {
   const [adults, setAdults] = useState(3);
@@ -12,6 +13,27 @@ const RestaurantReservation = () => {
     "08:00", "09:00", "10:00", "14:00", "15:00", 
     "18:00", "19:00", "20:00", "21:00", "22:00"
   ];
+
+  const handleMenuClick = () => {
+    Swal.fire({
+      title: '<span style="font-size: 24px; font-weight: bold; color: #D9B26A;">¡Disfruta de nuestra deliciosa carta!</span>',
+      text: 'Descubre nuestros platos exclusivos y disfruta de una experiencia única.',
+      imageUrl: 'https://res.cloudinary.com/dd5hetwb8/image/upload/menu_mh0axr.jpg',
+      imageWidth: 420,
+      imageHeight: 590,
+      imageAlt: 'Imagen de la carta',
+      background: '#0C1440',
+      color: '#ffffff',
+      confirmButtonColor: '#D9B26A',
+      showCloseButton: true,
+      showConfirmButton: false,
+      customClass: {
+        popup: 'custom-swal-popup',
+        title: 'custom-swal-title',
+        text: 'custom-swal-text',
+      },
+    });
+  };
 
   return (
     <div className="relative flex justify-center items-center min-h-screen bg-cover bg-center p-4" style={{ backgroundImage: "url('https://res.cloudinary.com/dd5hetwb8/image/upload/v1740388764/6d675de2-b8a5-40ff-94a0-9ac191e374b8.png')" }}>
@@ -56,7 +78,7 @@ const RestaurantReservation = () => {
         </div>
 
         <div className="flex justify-between mt-6">
-          <button className="w-1/2 bg-[#D9B26A] text-white hover:bg-yellow-600 py-2 rounded mr-2">Carta</button>
+          <button onClick={handleMenuClick} className="w-1/2 bg-[#D9B26A] text-white hover:bg-yellow-600 py-2 rounded mr-2">Carta</button>
           <button className="w-1/2 bg-[#D9B26A] text-white hover:bg-yellow-600 py-2 rounded ml-2">Reservar</button>
         </div>
 
