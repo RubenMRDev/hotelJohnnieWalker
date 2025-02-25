@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
-import Swal from 'sweetalert2'; // Add this import
+import Swal from 'sweetalert2';
 import CountryNumbers from '../../data/CountryNumbers.json';
 import credentials from '../../data/credentials.json';
 
 const LoginRegister = () => {
+    const navigate = useNavigate();
     const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({
         nombre: '',
@@ -14,6 +16,12 @@ const LoginRegister = () => {
         telefono: '',
         countryCode: '+34',
     });
+
+    useEffect(() => {
+        if (localStorage.getItem('isLogged') === 'true') {
+            navigate('/profile');
+        }
+    }, [navigate]);
 
     const countryOptions = Object.entries(CountryNumbers).map(([country, details]) => ({
         value: details.dialCode,
@@ -38,11 +46,15 @@ const LoginRegister = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         if (isLogin) {
-            if (formData.email === credentials.admin.email && 
+            if (formData.email === credentials.admin.email &&
                 formData.password === credentials.admin.password) {
-                window.location.href = '/profile';
+                
+                // Guardar estado de login en localStorage
+                localStorage.setItem('isLogged', 'true');
+
+                // Redirigir al perfil
+                navigate('/profile');
             } else {
-                // Replace console.log with SweetAlert
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',

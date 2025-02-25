@@ -29,7 +29,7 @@ return (
                 </svg>
             </div>  
             <div className="svg-container cursor-pointer">
-                <a href="/profile">
+                <a href="/loginregister">
                 <svg
                     className="profile-svg w-6.25 h-6.25 fill-none stroke-white"
                     viewBox="0 0 24 24"
