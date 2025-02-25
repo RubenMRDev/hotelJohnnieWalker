@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 import './RestaurantCard.css'
 
 const RestaurantCard = () => {
@@ -7,6 +8,51 @@ const RestaurantCard = () => {
     "https://res.cloudinary.com/dd5hetwb8/image/upload/v1739955279/restaurant2_iohn5l.webp",
     "https://res.cloudinary.com/dd5hetwb8/image/upload/v1739958826/restaurant-6479818_skdtym.jpg"
   ];
+
+  const handleMenuClick = () => {
+    Swal.fire({
+      title:
+        '<span style="font-size: 24px; font-weight: bold; color: #D9B26A;">¡Disfruta de nuestra deliciosa carta!</span>',
+      text: "Descubre nuestros platos exclusivos y disfruta de una experiencia única.",
+      imageUrl:
+        "https://res.cloudinary.com/dd5hetwb8/image/upload/menu_mh0axr.jpg",
+      imageWidth: 420,
+      imageHeight: 590,
+      imageAlt: "Imagen de la carta",
+      background: "#0C1440",
+      color: "#ffffff",
+      confirmButtonColor: "#D9B26A",
+      showCloseButton: true,
+      showConfirmButton: false,
+      customClass: {
+        popup: "custom-swal-popup",
+        title: "custom-swal-title",
+        text: "custom-swal-text",
+      },
+    });
+  };
+
+  const handleTimeClick = () => {
+    Swal.fire({
+      title:
+        '<span style="font-size: 24px; font-weight: bold; color: #D9B26A;">¡Este es nuestro horario!</span>',
+      imageUrl:
+        "https://res.cloudinary.com/dimlqpphf/image/upload/v1740482754/pixelcut-export_2_p0lrga.png",
+      imageWidth: 420,
+      imageHeight: 590,
+      imageAlt: "Imagen de la carta",
+      background: "#0C1440",
+      color: "#ffffff",
+      confirmButtonColor: "#D9B26A",
+      showCloseButton: true,
+      showConfirmButton: false,
+      customClass: {
+        popup: "custom-swal-popup",
+        title: "custom-swal-title",
+        text: "custom-swal-text",
+      },
+    });
+  };
 
   const nextImage = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -66,7 +112,7 @@ const RestaurantCard = () => {
       </div>
 
       <div className="absolute bottom-8 w-full flex justify-center space-x-2 px-4">
-        <button className="bg-white/10 hover:bg-white/50 hover:text-black transition duration-300 backdrop-blur-sm border border-white text-white font-bold px-2 py-2 rounded-2xl shadow-md text-xs sm:text-sm md:text-base">
+        <button onClick={handleTimeClick} className="bg-white/10 hover:bg-white/50 hover:text-black transition duration-300 backdrop-blur-sm border border-white text-white font-bold px-2 py-2 rounded-2xl shadow-md text-xs sm:text-sm md:text-base">
           HORARIO
         </button>
         <button 
@@ -75,7 +121,7 @@ const RestaurantCard = () => {
         >
           VER DISPONIBILIDAD
         </button>
-        <button className="bg-white/10 hover:bg-white/50 hover:text-black transition duration-300 backdrop-blur-sm border border-white text-white font-bold px-2 py-2 rounded-2xl shadow-md text-xs sm:text-sm md:text-base">
+        <button onClick={handleMenuClick} className="bg-white/10 hover:bg-white/50 hover:text-black transition duration-300 backdrop-blur-sm border border-white text-white font-bold px-2 py-2 rounded-2xl shadow-md text-xs sm:text-sm md:text-base">
           CARTA
         </button>
       </div>
