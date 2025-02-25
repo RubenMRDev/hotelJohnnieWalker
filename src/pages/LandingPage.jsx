@@ -1,6 +1,7 @@
 import RestaurantCard from "../components/RestaurantCard/RestaurantCard.jsx";
 import Review from "../components/Review/Review.jsx";
 import PreFooter from "../components/PreFooter/PreFooter.jsx";
+import Landing from "../components/Landing/Landing.jsx";
 
 function LandingPage() {
 	const resenyas = [
@@ -25,6 +26,7 @@ function LandingPage() {
 	  ];
 	return (
 		<div>
+      		<Landing />
 			<RestaurantCard />
 			<Review resenyas={resenyas}/>
 			
