@@ -5,10 +5,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import emailjs from "emailjs-com";
 
 const RestaurantReservation = () => {
-  const [adults, setAdults] = useState(3);
-  const [children, setChildren] = useState(1);
+  const [adults, setAdults] = useState(2);
+  const [children, setChildren] = useState(0);
   const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState("08:00");
+  const [time, setTime] = useState("19:00");
   const [comments, setComments] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
 
