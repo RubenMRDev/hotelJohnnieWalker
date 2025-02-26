@@ -25,7 +25,6 @@ describe("RestaurantCard", () => {
     render(<RestaurantCard />);
     const botones = screen.getAllByRole("button");
 
-    // Asumiendo que los primeros dos botones son las flechas
     const flechaIzquierda = botones[0];
     const flechaDerecha = botones[1];
 

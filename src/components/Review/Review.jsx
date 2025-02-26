@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const ResenyasCarousel = ({ resenyas = [] }) => {
   const [showArrows, setShowArrows] = useState(window.innerWidth >= 768);
-  const [currentSlide, setCurrentSlide] = useState(0); // Nuevo estado para la diapositiva actual
+  const [currentSlide, setCurrentSlide] = useState(0); 
 
   useEffect(() => {
     const handleResize = () => {
@@ -77,7 +77,6 @@ const ResenyasCarousel = ({ resenyas = [] }) => {
           <Resenya key={index} {...resenya} />
         ))}
       </Slider>
-      {/* Indicadores de puntos */}
       <div className="flex justify-center mt-4 gap-2">
         {resenyas.map((_, index) => (
           <div
