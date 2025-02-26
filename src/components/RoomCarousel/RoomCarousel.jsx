@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Rooms from "../../data/Rooms";
 
 const RoomCarousel = ({ room }) => {
-    if (!room) return null; // Evitar errores si room es undefined
+    if (!room) return null; 
 
     const [showArrows, setShowArrows] = useState(window.innerWidth >= 768);
 
