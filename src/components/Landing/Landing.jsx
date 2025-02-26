@@ -23,7 +23,6 @@ const Landing = () => {
             "linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('src/assets/images/room.jpg')",
         }}
       >
-        {/* Degradado en la parte superior */}
         <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#0C1440] to-transparent"></div>
 
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold"
@@ -38,7 +37,7 @@ const Landing = () => {
         </h1>
         <button
           className="mt-6 sm:mt-10 text-xl sm:text-2xl px-6 py-2 bg-[#E9ECEF] text-[#475E75] rounded-md hover:bg-[#D9B26A] hover:text-[#000000] transition-all duration-300 font-bold shadow-lg"
-          onClick={() => window.location.href = "/main"}
+          onClick={() => window.location.href = "/loginregister"}
         >
           Empezar
         </button>
