@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { CreditCard, Plus } from "lucide-react";
 import CardAndDeck from "../CardAndDeck/CardAndDeck";
 
 export default function ProfilePage() {
