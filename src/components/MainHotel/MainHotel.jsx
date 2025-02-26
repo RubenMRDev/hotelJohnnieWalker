@@ -13,9 +13,13 @@ const MainHotel = () => {
       <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center">
         HOTEL
       </h2>
-      <button className="bg-[#D9B26A] text-black px-9 py-3 text-lg font-semibold rounded-lg shadow-md hover:bg-yellow-600 transition">
+      <button 
+        className="bg-[#D9B26A] text-black px-9 py-3 text-lg font-semibold rounded-lg shadow-md hover:bg-yellow-600 transition"
+        onClick={() => window.location.href = '/reservehotel'}
+      >
         Reservar
       </button>
+
     </div>
   );
 };
