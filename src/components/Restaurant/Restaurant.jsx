@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { setReservationData, getReservationData } from "./Restaurant";
+import emailjs from "emailjs-com";
 
 const RestaurantReservation = () => {
-  const [adults, setAdults] = useState(getReservationData().adults);
-  const [children, setChildren] = useState(getReservationData().children);
-  const [date, setDate] = useState(new Date(getReservationData().date));
-  const [time, setTime] = useState(getReservationData().time);
-  const [comments, setComments] = useState(getReservationData().comments);
+  const [adults, setAdults] = useState(3);
+  const [children, setChildren] = useState(1);
+  const [date, setDate] = useState(new Date());
+  const [time, setTime] = useState("08:00");
+  const [comments, setComments] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
 
   const availableTimes = [
@@ -49,14 +49,44 @@ const RestaurantReservation = () => {
   };
 
   const handleReserveClick = () => {
-    setReservationData(adults, children, date.toISOString(), time, comments);
+    const toEmail = "hoteljohnniewalker.oficial@gmail.com";
 
-    Swal.fire({
-      title: "!Reserva confirmada!",
-      text: "Su reserva ha sido guardada exitosamente.",
-      icon: "success",
-      confirmButtonColor: "#D9B26A",
-    });
+    const templateParams = {
+      adults,
+      children,
+      date: date.toLocaleDateString(),
+      time,
+      comments,
+      to_email: toEmail,
+    };
+
+    emailjs
+      .send(
+        "service_blzzndg",
+        "template_xhddu01",
+        templateParams,
+        "9IIIEOfjBQTNshIjc"
+      )
+      .then(
+        (response) => {
+          console.log("Email enviado con éxito:", response);
+          Swal.fire({
+            title: "!Reserva confirmada!",
+            text: "Su reserva ha sido guardada exitosamente.",
+            icon: "success",
+            confirmButtonColor: "#D9B26A",
+          });
+        },
+        (error) => {
+          console.error("Error al enviar el email:", error);
+          Swal.fire({
+            title: "¡Error!",
+            text: `Hubo un problema al enviar la reserva. Error: ${error.text}`,
+            icon: "error",
+            confirmButtonColor: "#D9B26A",
+          });
+        }
+      );
   };
 
   return (
@@ -64,7 +94,7 @@ const RestaurantReservation = () => {
       className="relative flex justify-center items-center min-h-screen bg-cover bg-center p-4"
       style={{
         backgroundImage:
-          "url('https://res.cloudinary.com/dd5hetwb8/image/upload/v1740388764/6d675de2-b8a5-40ff-94a0-9ac191e374b8.png')",
+          "url('https://res.cloudinary.com/dimlqpphf/image/upload/v1740556202/restaurant_ypfeba.png')",
       }}
     >
       <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-[#0C1440] to-transparent pointer-events-none"></div>
