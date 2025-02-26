@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import RoomCard from "../components/RoomCard/Roomcard";
 
 function ReserveHotel() {
-  return (
-    <p>ReserveHotel</p>
-  )
+    return (
+        <div>
+            <RoomCard />
+        </div>
+    );
 }
 
-export default ReserveHotel
+export default ReserveHotel;
