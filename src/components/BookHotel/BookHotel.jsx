@@ -20,6 +20,30 @@ function BookHotel() {
     setFilteredRooms(results);
   };
 
+  const handleReserve = (room) => {
+    if (!checkInDate || !checkOutDate) {
+        alert("Por favor, selecciona una fecha de entrada y salida antes de reservar.");
+        return;
+    }
+
+    const newReservation = {
+        id: Date.now(),
+        room: room.type,
+        price: room.price,
+        checkIn: checkInDate,
+        checkOut: checkOutDate,
+        image: room.images[0],
+    };
+
+    const storedReservations = JSON.parse(localStorage.getItem("reservations")) || [];
+    const updatedReservations = [...storedReservations, newReservation];
+
+    localStorage.setItem("reservations", JSON.stringify(updatedReservations));
+
+    alert("Reserva guardada con éxito");
+};
+
+
   return (
     <div className="font-bold w-full m-0 p-0">
       <div className="relative w-full h-72 overflow-hidden">
@@ -116,7 +140,7 @@ function BookHotel() {
         {filteredRooms.length > 0 ? (
           filteredRooms.map((room) => (
             <div key={room.id} className="w-full">
-              <RoomCarousel room={room} />
+              <RoomCarousel room={room} onReserve={handleReserve} />
             </div>
           ))
         ) : (

@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Rooms from "../../data/Rooms";
 
-const RoomCarousel = ({ room }) => {
+const RoomCarousel = ({ room, onReserve }) => {
     if (!room) return null; 
 
     const [showArrows, setShowArrows] = useState(window.innerWidth >= 768);
@@ -51,7 +51,10 @@ const RoomCarousel = ({ room }) => {
                 </div>
             </div>
             <p className="text-center mt-4 text-gray-700 font-medium">{room.description}</p>
-            <button className="mt-4 w-full bg-yellow-500 text-black font-bold py-2 rounded-md shadow-md hover:bg-yellow-600 transition duration-300">
+            <button
+                className="mt-4 w-full bg-yellow-500 text-black font-bold py-2 rounded-md shadow-md hover:bg-yellow-600 transition duration-300"
+                onClick={() => onReserve(room)}
+            >
                 Reservar por {room.price}€
             </button>
         </div>
