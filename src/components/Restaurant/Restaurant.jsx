@@ -49,7 +49,7 @@ const RestaurantReservation = () => {
   };
 
   const handleReserveClick = () => {
-    const toEmail = "hoteljohnniewalker.oficial@gmail.com";
+    const toEmail = "hoteljohnniewalker.oficial@gmail.com"; //Usar localStorage, correo del usuario
 
     const templateParams = {
       adults,
@@ -72,7 +72,7 @@ const RestaurantReservation = () => {
           console.log("Email enviado con éxito:", response);
           Swal.fire({
             title: "!Reserva confirmada!",
-            text: "Su reserva ha sido guardada exitosamente.",
+            text: "Su reserva ha sido realizada.",
             icon: "success",
             confirmButtonColor: "#D9B26A",
           });
