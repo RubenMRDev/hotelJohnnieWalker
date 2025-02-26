@@ -70,8 +70,19 @@ const LoginRegister = () => {
 				});
 			}
 		} else {
-			console.log("Registering with", formData);
+			if (formData.password !== formData.confirmPassword) {
+				Swal.fire({
+					icon: "error",
+					title: "Error",
+					text: "Las contraseñas no coinciden",
+					confirmButtonColor: "#D9B26A",
+				});
+				return;
+			}
+			console.log("Registrando con", formData);
 			saveUserData();
+			localStorage.setItem("isLogged", "true");
+			navigate("/profile");
 		}
 	};
 
