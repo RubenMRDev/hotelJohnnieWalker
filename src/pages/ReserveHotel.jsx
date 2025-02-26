@@ -10,3 +10,4 @@ function ReserveHotel() {
 }
 
 export default ReserveHotel;
+export default ReserveHotel;
