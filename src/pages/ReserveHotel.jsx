@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import BookHotel from "../components/BookHotel/BookHotel";
 
 function ReserveHotel() {
-  return (
-    <p>ReserveHotel</p>
-  )
+	return (
+		<div>
+			<BookHotel />
+		</div>
+	);
 }
 
-export default ReserveHotel
+export default ReserveHotel;
