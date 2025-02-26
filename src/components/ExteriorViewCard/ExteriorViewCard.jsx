@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const InteriorViewCard = () => {
+const ExteriorViewCard = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const images = ["hotelExterior1.jpg", "hotelExterior2.jpg"];
@@ -17,7 +17,7 @@ const InteriorViewCard = () => {
   return (
     <div className="flex justify-center items-center p-4">
       <div className="max-w-4xl w-full relative">
-        <h2 className="text-2xl font-semibold text-left mb-4">Vistas de interior:</h2>
+        <h2 className="text-2xl font-semibold text-left mb-4">Vistas de exterior:</h2>
 
         <div className="relative w-full h-[400px] bg-gray-900 overflow-hidden rounded-2xl shadow-lg">
           <AnimatePresence>
@@ -63,4 +63,4 @@ const InteriorViewCard = () => {
   );
 };
 
-export default InteriorViewCard;
+export default ExteriorViewCard;
