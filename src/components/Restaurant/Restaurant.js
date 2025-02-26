@@ -1,9 +1,9 @@
 let reservationData = {
-    adults: 3,
+    adults: 1,
     children: 1,
     date: "2025-07-12",
-    time: "20:00",
-    comments: "Comentarios de ejemplo",
+    time: "8:00",
+    comments: "",
   };
   
   export const getReservationData = () => {

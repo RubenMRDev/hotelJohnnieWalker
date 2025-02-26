@@ -50,7 +50,7 @@ const RestaurantReservation = () => {
 
   const handleReserveClick = () => {
     setReservationData(adults, children, date.toISOString(), time, comments);
-    
+
     Swal.fire({
       title: "!Reserva confirmada!",
       text: "Su reserva ha sido guardada exitosamente.",
@@ -81,8 +81,10 @@ const RestaurantReservation = () => {
             type="number"
             value={adults}
             onChange={(e) => {
-              setAdults(e.target.value);
+              const value = Math.max(0, e.target.value);
+              setAdults(value);
             }}
+            min="0"
             className="border p-2 w-full rounded"
           />
         </div>
@@ -93,8 +95,10 @@ const RestaurantReservation = () => {
             type="number"
             value={children}
             onChange={(e) => {
-              setChildren(e.target.value);
+              const value = Math.max(0, e.target.value);
+              setChildren(value);
             }}
+            min="0"
             className="border p-2 w-full rounded"
           />
         </div>
@@ -166,7 +170,7 @@ const RestaurantReservation = () => {
 
         <div className="mt-4 text-center">
           <button
-            onClick={() => window.location.href = "/"}
+            onClick={() => (window.location.href = "/")}
             className="text-sm text-gray-700 py-1 px-3 bg-gray-300 hover:bg-gray-400 rounded"
           >
             Volver
