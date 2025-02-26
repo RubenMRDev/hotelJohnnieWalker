@@ -1,6 +1,8 @@
 import RestaurantCard from "../components/RestaurantCard/RestaurantCard.jsx";
 import Review from "../components/Review/Review.jsx";
 import PreFooter from "../components/PreFooter/PreFooter.jsx";
+import InteriorViewCard from "../components/InteriorViewCard/InteriorViewCard.jsx";
+import ExteriorViewCard from "../components/ExteriorViewCard/ExteriorViewCard.jsx";
 import Landing from "../components/Landing/Landing.jsx";
 
 function LandingPage() {
@@ -27,6 +29,8 @@ function LandingPage() {
 	return (
 		<div>
       		<Landing />
+			<InteriorViewCard />
+			<ExteriorViewCard />
 			<RestaurantCard />
 			<Review resenyas={resenyas}/>
 			

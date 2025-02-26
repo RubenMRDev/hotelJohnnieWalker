@@ -1,9 +1,9 @@
 import React from 'react'
-import Restaurant from '../components/Restaurant/Restaurant'
+import RestaurantCard from '../components/RestaurantCard/RestaurantCard'
 
 function ReserveRestaurant() {
   return (
-    <Restaurant/>
+    <RestaurantCard/>
   )
 }
 
