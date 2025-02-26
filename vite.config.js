@@ -4,7 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-<<<<<<< HEAD
   plugins: [react(), tailwindcss()],
   test: {
     globals: true,
@@ -12,7 +11,3 @@ export default defineConfig({
   }
 })
 
-=======
-  plugins: [react(),tailwindcss()],
-})
->>>>>>> feature/landing
