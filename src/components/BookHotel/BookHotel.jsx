@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import RoomCarousel from "../RoomCarousel/RoomCarousel";
 import Rooms from "../../data/Rooms";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Swal from "sweetalert2";
 
 function BookHotel() {
   const [selectedBeds, setSelectedBeds] = useState("");
   const [selectedCapacity, setSelectedCapacity] = useState("");
-  const [checkInDate, setCheckInDate] = useState("");
-  const [checkOutDate, setCheckOutDate] = useState("");
+  const [checkInDate, setCheckInDate] = useState(null);
+  const [checkOutDate, setCheckOutDate] = useState(null);
   const [guests, setGuests] = useState(1);
   const [filteredRooms, setFilteredRooms] = useState([]);
 
@@ -22,17 +25,22 @@ function BookHotel() {
 
   const handleReserve = (room) => {
     if (!checkInDate || !checkOutDate) {
-        alert("Por favor, selecciona una fecha de entrada y salida antes de reservar.");
-        return;
+      Swal.fire({
+        title: "¡Error!",
+        text: "Por favor, selecciona una fecha de entrada y salida antes de reservar.",
+        icon: "error",
+        confirmButtonColor: "#D9B26A",
+      });
+      return;
     }
 
     const newReservation = {
-        id: Date.now(),
-        room: room.type,
-        price: room.price,
-        checkIn: checkInDate,
-        checkOut: checkOutDate,
-        image: room.images[0],
+      id: Date.now(),
+      room: room.type,
+      price: room.price,
+      checkIn: checkInDate.toLocaleDateString(),
+      checkOut: checkOutDate.toLocaleDateString(),
+      image: room.images[0],
     };
 
     const storedReservations = JSON.parse(localStorage.getItem("reservations")) || [];
@@ -40,9 +48,13 @@ function BookHotel() {
 
     localStorage.setItem("reservations", JSON.stringify(updatedReservations));
 
-    alert("Reserva guardada con éxito");
-};
-
+    Swal.fire({
+      title: "¡Reserva guardada con éxito!",
+      text: "Tu reserva ha sido realizada.",
+      icon: "success",
+      confirmButtonColor: "#D9B26A",
+    });
+  };
 
   return (
     <div className="font-bold w-full m-0 p-0">
@@ -68,10 +80,11 @@ function BookHotel() {
             <label className="text-blue-600 font-bold text-sm mb-1">
               Entrada
             </label>
-            <input
-              type="date"
-              value={checkInDate}
-              onChange={(e) => setCheckInDate(e.target.value)}
+            <DatePicker
+              selected={checkInDate}
+              onChange={(date) => setCheckInDate(date)}
+              dateFormat="dd/MM/yyyy"
+              minDate={new Date()}
               className="p-2 border border-gray-300 rounded-md text-sm"
             />
           </div>
@@ -79,10 +92,11 @@ function BookHotel() {
             <label className="text-blue-600 font-bold text-sm mb-1">
               Salida
             </label>
-            <input
-              type="date"
-              value={checkOutDate}
-              onChange={(e) => setCheckOutDate(e.target.value)}
+            <DatePicker
+              selected={checkOutDate}
+              onChange={(date) => setCheckOutDate(date)}
+              dateFormat="dd/MM/yyyy"
+              minDate={new Date()}
               className="p-2 border border-gray-300 rounded-md text-sm"
             />
           </div>

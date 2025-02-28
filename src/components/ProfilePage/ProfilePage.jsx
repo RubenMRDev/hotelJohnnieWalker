@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import CardAndDeck from "../CardAndDeck/CardAndDeck";
+import RestaurantReservationCard from "../RestaurantReservationCard/RestaurantReservationCard";
 
 export default function ProfilePage() {
   const [userData, setUserData] = useState({
@@ -7,33 +8,46 @@ export default function ProfilePage() {
     email: "",
     phone: "",
   });
-
-  const [reservations, setReservations] = useState([]);
+  const [hotelReservations, setHotelReservations] = useState([]);
+  const [restaurantReservations, setRestaurantReservations] = useState([]);
 
   useEffect(() => {
     const storedUserData = JSON.parse(localStorage.getItem("userData"));
     if (storedUserData) {
       setUserData(storedUserData);
     }
-
-    const storedReservations =
+    const storedHotelReservations =
       JSON.parse(localStorage.getItem("reservations")) || [];
-    setReservations(storedReservations);
+    setHotelReservations(storedHotelReservations);
+    const storedRestaurantReservations =
+      JSON.parse(localStorage.getItem("restaurantReservations")) || [];
+    setRestaurantReservations(storedRestaurantReservations);
   }, []);
 
-  const handleCancelReservation = (id) => {
-    const updatedReservations = reservations.filter(
+  const handleCancelHotelReservation = (id) => {
+    const updatedReservations = hotelReservations.filter(
       (reservation) => reservation.id !== id
     );
-    setReservations(updatedReservations);
+    setHotelReservations(updatedReservations);
     localStorage.setItem("reservations", JSON.stringify(updatedReservations));
   };
 
+  const handleCancelRestaurantReservation = (id) => {
+    const updatedReservations = restaurantReservations.filter(
+      (reservation) => reservation.id !== id
+    );
+    setRestaurantReservations(updatedReservations);
+    localStorage.setItem(
+      "restaurantReservations",
+      JSON.stringify(updatedReservations)
+    );
+  };
+
   return (
-    <div className=" max-w-max mx-auto bg-white min-h-screen p-4 pb-8">
+    <div className="max-w-max mx-auto bg-white min-h-screen p-4 pb-8">
+      {/* Información personal */}
       <div className="rounded-xl border border-[#e5e7eb] p-5 mb-4">
         <h1 className="text-center text-2xl font-medium mb-6">Mi Perfil</h1>
-
         <div className="mb-6">
           <h2 className="text-[#6b7280] uppercase text-sm font-medium mb-4">
             INFORMACIÓN PERSONAL
@@ -53,25 +67,55 @@ export default function ProfilePage() {
         </div>
       </div>
 
+      {/* Reservas de Hotel */}
       <div className="rounded-xl border border-[#e5e7eb] p-5 mb-4">
         <h2 className="text-[#6b7280] uppercase text-sm font-medium mb-4">
-          Mis Reservas
+          Mis Reservas de Hotel
         </h2>
-        {reservations.length > 0 ? (
-          reservations.map((reservation) => (
+        {hotelReservations.length > 0 ? (
+          hotelReservations.map((reservation) => (
             <div key={reservation.id} className="mb-4">
               <CardAndDeck
-                room={reservation.room} 
+                room={reservation.room}
                 price={reservation.price}
                 checkIn={reservation.checkIn}
                 checkOut={reservation.checkOut}
-                image={reservation.image} 
-                onCancel={() => handleCancelReservation(reservation.id)}
+                image={reservation.image}
+                onCancel={() => handleCancelHotelReservation(reservation.id)}
               />
             </div>
           ))
         ) : (
-          <p className="text-center text-gray-600">No tienes reservas aún.</p>
+          <p className="text-center text-gray-600">
+            No tienes reservas de hotel aún.
+          </p>
+        )}
+      </div>
+
+      {/* Reservas de Restaurante */}
+      <div className="rounded-xl border border-[#e5e7eb] p-5 mb-4">
+        <h2 className="text-[#6b7280] uppercase text-sm font-medium mb-4">
+          Mis Reservas de Restaurante
+        </h2>
+        {restaurantReservations.length > 0 ? (
+          restaurantReservations.map((reservation) => (
+            <div key={reservation.id} className="mb-4">
+              <RestaurantReservationCard
+                adults={reservation.adults}
+                children={reservation.children}
+                date={reservation.date}
+                time={reservation.time}
+                comments={reservation.comments}
+                onCancel={() =>
+                  handleCancelRestaurantReservation(reservation.id)
+                }
+              />
+            </div>
+          ))
+        ) : (
+          <p className="text-center text-gray-600">
+            No tienes reservas de restaurante aún.
+          </p>
         )}
       </div>
 

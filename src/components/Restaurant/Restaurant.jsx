@@ -49,8 +49,38 @@ const RestaurantReservation = () => {
   };
 
   const handleReserveClick = () => {
-    const toEmail = "hoteljohnniewalker.oficial@gmail.com"; //Usar localStorage, correo del usuario
+    if (!date || !time) {
+      Swal.fire({
+        title: "¡Error!",
+        text: "Por favor, selecciona una fecha y hora antes de reservar.",
+        icon: "error",
+        confirmButtonColor: "#D9B26A",
+      });
+      return;
+    }
 
+    // Creamos un objeto de reserva específico para restaurante
+    const newReservation = {
+      id: Date.now(),
+      type: "Restaurante", // Indicador para diferenciar el tipo de reserva
+      adults,
+      children,
+      date: date.toLocaleDateString(),
+      time,
+      comments,
+    };
+
+    // Guardamos las reservas en una clave distinta para que no se mezclen con las reservas de hotel
+    const storedReservations =
+      JSON.parse(localStorage.getItem("restaurantReservations")) || [];
+    const updatedReservations = [...storedReservations, newReservation];
+    localStorage.setItem(
+      "restaurantReservations",
+      JSON.stringify(updatedReservations)
+    );
+
+    // Enviar email con emailjs (opcional)
+    const toEmail = "hoteljohnniewalker.oficial@gmail.com"; // O se puede usar el correo del usuario
     const templateParams = {
       adults,
       children,
@@ -72,7 +102,7 @@ const RestaurantReservation = () => {
           console.log("Email enviado con éxito:", response);
           Swal.fire({
             title: "!Reserva confirmada!",
-            text: "Su reserva ha sido realizada.",
+            text: "Su reserva ha sido realizada y guardada.",
             icon: "success",
             confirmButtonColor: "#D9B26A",
           });
@@ -111,7 +141,7 @@ const RestaurantReservation = () => {
             type="number"
             value={adults}
             onChange={(e) => {
-              const value = Math.max(0, e.target.value);
+              const value = Math.max(0, parseInt(e.target.value));
               setAdults(value);
             }}
             min="0"
@@ -125,7 +155,7 @@ const RestaurantReservation = () => {
             type="number"
             value={children}
             onChange={(e) => {
-              const value = Math.max(0, e.target.value);
+              const value = Math.max(0, parseInt(e.target.value));
               setChildren(value);
             }}
             min="0"

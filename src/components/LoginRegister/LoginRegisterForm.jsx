@@ -60,7 +60,7 @@ const LoginRegister = () => {
                 };
                 saveUserData(userDataToSave);
                 localStorage.setItem("isLogged", "true");
-                navigate("/profile");
+                navigate("/main");
             } else {
                 Swal.fire({
                     icon: "error",
@@ -88,7 +88,7 @@ const LoginRegister = () => {
             };
             saveUserData(userDataToSave);
             localStorage.setItem("isLogged", "true");
-            navigate("/profile");
+            navigate("/main");
         }
     };
 
