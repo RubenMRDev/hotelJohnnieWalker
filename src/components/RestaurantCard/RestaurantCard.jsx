@@ -112,19 +112,20 @@ const RestaurantCard = () => {
       </div>
 
       <div className="absolute bottom-8 w-full flex justify-center space-x-2 px-4">
-        <button onClick={handleTimeClick} className="bg-white/10 hover:bg-white/50 hover:text-black transition duration-300 backdrop-blur-sm border border-white text-white font-bold px-2 py-2 rounded-2xl shadow-md text-xs sm:text-sm md:text-base">
-          HORARIO
-        </button>
-        <button 
-          onClick={() => window.location.href = '/reserverestaurant'} 
-          className="bg-white/10 hover:bg-white/60 hover:text-black transition duration-300 backdrop-blur-sm border border-white text-white font-bold px-2 py-2 rounded-2xl shadow-md text-xs sm:text-sm md:text-base"
-        >
-          VER DISPONIBILIDAD
-        </button>
-        <button onClick={handleMenuClick} className="bg-white/10 hover:bg-white/50 hover:text-black transition duration-300 backdrop-blur-sm border border-white text-white font-bold px-2 py-2 rounded-2xl shadow-md text-xs sm:text-sm md:text-base">
-          CARTA
-        </button>
-      </div>
+  <button onClick={handleTimeClick} className="bg-black/70 hover:bg-gray-800/80 hover:text-white transition duration-300 backdrop-blur-md border border-white text-white font-bold px-2 py-2 rounded-2xl shadow-md text-xs sm:text-sm md:text-base">
+    Horario
+  </button>
+  <button 
+    onClick={() => window.location.href = '/reserverestaurant'} 
+    className="bg-black/70 hover:bg-gray-800/80 hover:text-white transition duration-300 backdrop-blur-md border border-white text-white font-bold px-2 py-2 rounded-2xl shadow-md text-xs sm:text-sm md:text-base"
+  >
+    Ver disponibilidad
+  </button>
+  <button onClick={handleMenuClick} className="bg-black/70 hover:bg-gray-800/80 hover:text-white transition duration-300 backdrop-blur-md border border-white text-white font-bold px-2 py-2 rounded-2xl shadow-md text-xs sm:text-sm md:text-base">
+    Carta
+  </button>
+</div>
+
     </div>
   );
 };

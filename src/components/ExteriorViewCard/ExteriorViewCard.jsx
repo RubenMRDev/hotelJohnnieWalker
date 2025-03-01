@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const ExteriorViewCard = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const images = ["hotelExterior1.jpg", "hotelExterior2.jpg"];
+  const images = ["https://res.cloudinary.com/dd5hetwb8/image/upload/v1740823011/hotelExterior2_l2ij0e.jpg", "https://res.cloudinary.com/dd5hetwb8/image/upload/v1740823057/hotelExterior1_ut2uvt.jpg"];
 
   const nextImage = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -15,7 +15,7 @@ const ExteriorViewCard = () => {
   };
 
   return (
-    <div className="flex justify-center items-center p-4">
+    <div className="flex justify-center items-center p-4 mb-12">
       <div className="max-w-4xl w-full relative">
         <h2 className="text-2xl font-semibold text-left mb-4">Vistas de exterior:</h2>
 
@@ -23,7 +23,7 @@ const ExteriorViewCard = () => {
           <AnimatePresence>
             <motion.img
               key={images[currentIndex]}
-              src={`src/assets/images/${images[currentIndex]}`}
+              src={images[currentIndex]}
               alt="Nuevo Restaurante"
               className="w-full h-full object-cover absolute"
               initial={{ opacity: 0 }}

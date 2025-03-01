@@ -18,26 +18,6 @@ function PreFooter() {
           <span className="block">HOTEL</span>
         </h1>
       </div>
-      <div className="container-conditions flex justify-center flex-nowrap mt-8 mb-4 gap-8">
-        <a
-          href=""
-          className="no-underline font-small text-white text-[clamp(12px,2vw,30px)] text-shadow-md"
-        >
-          Condiciones de reserva
-        </a>
-        <a
-          href=""
-          className="no-underline font-medium text-white text-[clamp(12px,2vw,30px)] text-shadow-md"
-        >
-          Aviso Legal
-        </a>
-        <a
-          href=""
-          className="no-underline font-medium text-white text-[clamp(12px,2vw,30px)] text-shadow-md"
-        >
-          Política de uso
-        </a>
-      </div>
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#0C1440]/100 to-transparent"></div>
     </div>
   );

@@ -31,7 +31,7 @@ const Landing = () => {
 				className="relative min-h-screen flex flex-col items-center justify-center text-white bg-cover bg-center"
 				style={{
 					backgroundImage:
-						"linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('src/assets/images/room.jpg')",
+						"linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('https://res.cloudinary.com/dd5hetwb8/image/upload/v1740823377/room_pnhijz.jpg')",
 				}}
 			>
 				<div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#0C1440] to-transparent"></div>
@@ -60,7 +60,7 @@ const Landing = () => {
 						className="left-half lg:w-[25%] lg:h-[100] w-[90%] h-[100%] bg-cover bg-center"
 						style={{
 							backgroundImage:
-								"url('src/assets/images/leafgreen.png')",
+								"url('https://res.cloudinary.com/dd5hetwb8/image/upload/v1740823279/leafgreen_tefff5.png')",
 							backgroundPosition: "center",
 							backgroundSize: "cover",
 							transform: `translateX(-${calculateTranslation()}) scaleX(-1)`,
@@ -71,7 +71,7 @@ const Landing = () => {
 						className="right-half lg:w-[25%] lg:h-[100] w-[90%] h-[100%] bg-cover bg-center"
 						style={{
 							backgroundImage:
-								"url('src/assets/images/leafgreen.png')",
+								"url('https://res.cloudinary.com/dd5hetwb8/image/upload/v1740823279/leafgreen_tefff5.png')",
 							backgroundPosition: "center",
 							backgroundSize: "cover",
 							transform: `translateX(${calculateTranslation()})`,
