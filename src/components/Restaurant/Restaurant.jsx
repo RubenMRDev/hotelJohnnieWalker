@@ -3,10 +3,10 @@ import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import emailjs from "emailjs-com";
-import { useNavigate } from "react-router-dom";  // Importar useNavigate
+import { useNavigate } from "react-router-dom";
 
 const RestaurantReservation = () => {
-  const navigate = useNavigate();  // Inicializar el hook useNavigate
+  const navigate = useNavigate(); 
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [date, setDate] = useState(new Date());
@@ -79,7 +79,6 @@ const RestaurantReservation = () => {
           confirmButtonColor: "#D9B26A",
         });
 
-        // Redirigir a /main después de la reserva exitosa
         navigate("/main");
       },
       (error) => {

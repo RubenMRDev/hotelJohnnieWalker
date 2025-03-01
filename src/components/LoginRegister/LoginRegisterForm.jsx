@@ -16,7 +16,7 @@ const LoginRegister = () => {
         phone: "",
         countryCode: "+34",
     });
-    const [acceptedTerms, setAcceptedTerms] = useState(false); // Nuevo estado para los términos y condiciones
+    const [acceptedTerms, setAcceptedTerms] = useState(false); 
 
     useEffect(() => {
         if (localStorage.getItem("isLogged") === "true") {
@@ -41,7 +41,7 @@ const LoginRegister = () => {
     };
 
     const handleCheckboxChange = () => {
-        setAcceptedTerms(!acceptedTerms); // Alternar el valor del checkbox
+        setAcceptedTerms(!acceptedTerms); 
     };
 
     const saveUserData = (userData) => {
@@ -50,7 +50,7 @@ const LoginRegister = () => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        if (!acceptedTerms) { // Verificar que se aceptaron los términos
+        if (!acceptedTerms) { 
             Swal.fire({
                 icon: "error",
                 title: "Error",
@@ -197,7 +197,6 @@ const LoginRegister = () => {
                             </div>
                         </>
                     )}
-                    {/* Checkbox para aceptar los términos */}
                     {!isLogin && (
                         <div className="mb-4 flex items-center">
                             <input
