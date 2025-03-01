@@ -16,6 +16,7 @@ const LoginRegister = () => {
         phone: "",
         countryCode: "+34",
     });
+    const [acceptedTerms, setAcceptedTerms] = useState(false); // Nuevo estado para los términos y condiciones
 
     useEffect(() => {
         if (localStorage.getItem("isLogged") === "true") {
@@ -39,19 +40,32 @@ const LoginRegister = () => {
         setFormData({ ...formData, countryCode: selectedOption.value });
     };
 
+    const handleCheckboxChange = () => {
+        setAcceptedTerms(!acceptedTerms); // Alternar el valor del checkbox
+    };
+
     const saveUserData = (userData) => {
         localStorage.setItem("userData", JSON.stringify(userData));
     };
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
+        if (!acceptedTerms) { // Verificar que se aceptaron los términos
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Debes aceptar los términos y condiciones para continuar.",
+                confirmButtonColor: "#D9B26A",
+            });
+            return;
+        }
+
         if (isLogin) {
             const user = Object.values(credentials).find(
                 (user) => user.email === formData.email && user.password === formData.password
             );
 
             if (user) {
-                // Guardar los datos del usuario desde credentials.json
                 const userDataToSave = {
                     name: user.name,
                     email: user.email,
@@ -79,7 +93,7 @@ const LoginRegister = () => {
                 });
                 return;
             }
-            // Para el registro, guardar los datos del formulario
+
             const userDataToSave = {
                 name: formData.name,
                 email: formData.email,
@@ -99,21 +113,13 @@ const LoginRegister = () => {
                 <div className="flex justify-between border-b-2 pb-3 mb-6">
                     <button
                         onClick={() => setIsLogin(true)}
-                        className={`text-lg font-semibold px-4 py-1 ${
-                            isLogin
-                                ? "border-b-4 border-yellow-500 text-gray-900"
-                                : "text-gray-500 hover:text-gray-900"
-                        }`}
+                        className={`text-lg font-semibold px-4 py-1 ${isLogin ? "border-b-4 border-yellow-500 text-gray-900" : "text-gray-500 hover:text-gray-900"}`}
                     >
                         Inicia Sesión
                     </button>
                     <button
                         onClick={() => setIsLogin(false)}
-                        className={`text-lg font-semibold px-4 py-1 ${
-                            !isLogin
-                                ? "border-b-4 border-yellow-500 text-gray-900"
-                                : "text-gray-500 hover:text-gray-900"
-                        }`}
+                        className={`text-lg font-semibold px-4 py-1 ${!isLogin ? "border-b-4 border-yellow-500 text-gray-900" : "text-gray-500 hover:text-gray-900"}`}
                     >
                         Regístrate
                     </button>
@@ -191,7 +197,25 @@ const LoginRegister = () => {
                             </div>
                         </>
                     )}
-                    <button type="submit" className="w-full bg-[#D9B26A] text-white font-semibold rounded-lg p-3 mt-4 hover:bg-yellow-600 focus:ring-2 focus:ring-yellow-400 focus:outline-none">
+                    {/* Checkbox para aceptar los términos */}
+                    {!isLogin && (
+                        <div className="mb-4 flex items-center">
+                            <input
+                                type="checkbox"
+                                id="terms"
+                                checked={acceptedTerms}
+                                onChange={handleCheckboxChange}
+                                className="mr-2"
+                            />
+                            <label htmlFor="terms" className="text-sm text-gray-700">
+                                Acepto los <span className="text-yellow-500">términos y condiciones</span> para recibir correos electrónicos.
+                            </label>
+                        </div>
+                    )}
+                    <button
+                        type="submit"
+                        className="w-full bg-[#D9B26A] text-white font-semibold rounded-lg p-3 mt-4 hover:bg-yellow-600 focus:ring-2 focus:ring-yellow-400 focus:outline-none"
+                    >
                         {isLogin ? "Entrar" : "Registrar"}
                     </button>
                 </form>

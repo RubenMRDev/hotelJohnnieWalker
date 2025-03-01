@@ -3,8 +3,10 @@ import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import emailjs from "emailjs-com";
+import { useNavigate } from "react-router-dom";  // Importar useNavigate
 
 const RestaurantReservation = () => {
+  const navigate = useNavigate();  // Inicializar el hook useNavigate
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [date, setDate] = useState(new Date());
@@ -76,6 +78,9 @@ const RestaurantReservation = () => {
           icon: "success",
           confirmButtonColor: "#D9B26A",
         });
+
+        // Redirigir a /main después de la reserva exitosa
+        navigate("/main");
       },
       (error) => {
         Swal.fire({
@@ -91,6 +96,7 @@ const RestaurantReservation = () => {
   return (
     <div className="relative flex justify-center items-center min-h-screen bg-cover bg-center p-4"
       style={{ backgroundImage: "url('https://res.cloudinary.com/dimlqpphf/image/upload/v1740556202/restaurant_ypfeba.png')" }}>
+
       <div className="relative z-10 w-96 bg-white p-6 rounded-2xl shadow-xl">
         <h2 className="text-2xl font-semibold text-center mb-4 italic">Reserva Restaurante</h2>
 
