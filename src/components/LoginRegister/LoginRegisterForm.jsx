@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import Swal from "sweetalert2";
 import CountryNumbers from "../../data/CountryNumbers.json";
-import credentials from "../../data/credentials.json";
 
 const LoginRegister = () => {
     const navigate = useNavigate();
@@ -16,7 +15,8 @@ const LoginRegister = () => {
         phone: "",
         countryCode: "+34",
     });
-    const [acceptedTerms, setAcceptedTerms] = useState(false); 
+    const [acceptedTerms, setAcceptedTerms] = useState(false);
+    const [phoneError, setPhoneError] = useState("");
 
     useEffect(() => {
         if (localStorage.getItem("isLogged") === "true") {
@@ -34,6 +34,11 @@ const LoginRegister = () => {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+        
+        // Clear phone error when user is typing
+        if (name === "phone") {
+            setPhoneError("");
+        }
     };
 
     const handleCountryCodeChange = (selectedOption) => {
@@ -41,36 +46,69 @@ const LoginRegister = () => {
     };
 
     const handleCheckboxChange = () => {
-        setAcceptedTerms(!acceptedTerms); 
+        setAcceptedTerms(!acceptedTerms);
+    };
+
+    const validatePhone = () => {
+        if (formData.phone.length < 9) {
+            setPhoneError("El número de teléfono debe tener al menos 9 caracteres");
+            return false;
+        }
+        setPhoneError("");
+        return true;
     };
 
     const saveUserData = (userData) => {
+        // Store user data
         localStorage.setItem("userData", JSON.stringify(userData));
+        
+        // Also save to registeredUsers if this is a new registration
+        if (!isLogin) {
+            const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
+            // Add password to userData for future login authentication
+            const userWithPassword = {
+                ...userData,
+                password: formData.password
+            };
+            registeredUsers.push(userWithPassword);
+            localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
+        }
     };
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        if (!acceptedTerms) { 
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "Debes aceptar los términos y condiciones para continuar.",
-                confirmButtonColor: "#D9B26A",
-            });
-            return;
+        
+        // Only check terms acceptance and phone validation for registration
+        if (!isLogin) {
+            if (!acceptedTerms) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Debes aceptar los términos y condiciones para continuar.",
+                    confirmButtonColor: "#D9B26A",
+                });
+                return;
+            }
+            
+            // Validate phone number
+            if (!validatePhone()) {
+                return;
+            }
         }
 
         if (isLogin) {
-            const user = Object.values(credentials).find(
+            // Check registered users
+            const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
+            const registeredUser = registeredUsers.find(
                 (user) => user.email === formData.email && user.password === formData.password
             );
 
-            if (user) {
+            if (registeredUser) {
                 const userDataToSave = {
-                    name: user.name,
-                    email: user.email,
-                    phone: user.phone,
-                    countryCode: user.countryCode
+                    name: registeredUser.name,
+                    email: registeredUser.email,
+                    phone: registeredUser.phone || "",
+                    countryCode: registeredUser.countryCode || "+34"
                 };
                 saveUserData(userDataToSave);
                 localStorage.setItem("isLogged", "true");
@@ -84,11 +122,28 @@ const LoginRegister = () => {
                 });
             }
         } else {
+            // Registration flow
             if (formData.password !== formData.confirmPassword) {
                 Swal.fire({
                     icon: "error",
                     title: "Error",
                     text: "Las contraseñas no coinciden",
+                    confirmButtonColor: "#D9B26A",
+                });
+                return;
+            }
+
+            // Check if email already exists in registered users
+            const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
+            const emailExistsInRegistered = registeredUsers.some(
+                (user) => user.email === formData.email
+            );
+
+            if (emailExistsInRegistered) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Este email ya está registrado",
                     confirmButtonColor: "#D9B26A",
                 });
                 return;
@@ -190,26 +245,28 @@ const LoginRegister = () => {
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleInputChange}
-                                        className="w-2/3 border border-gray-300 rounded-r-lg p-3 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
+                                        className={`w-2/3 border border-gray-300 rounded-r-lg p-3 focus:ring-2 focus:ring-yellow-500 focus:outline-none ${phoneError ? "border-red-500" : ""}`}
                                         required
                                     />
                                 </div>
+                                {phoneError && (
+                                    <p className="text-red-500 text-xs mt-1">{phoneError}</p>
+                                )}
+                                <p className="text-gray-500 text-xs mt-1">El número debe tener al menos 9 dígitos</p>
+                            </div>
+                            <div className="mb-4 flex items-center">
+                                <input
+                                    type="checkbox"
+                                    id="terms"
+                                    checked={acceptedTerms}
+                                    onChange={handleCheckboxChange}
+                                    className="mr-2"
+                                />
+                                <label htmlFor="terms" className="text-sm text-gray-700">
+                                    Acepto los <span className="text-yellow-500">términos y condiciones</span> para recibir correos electrónicos.
+                                </label>
                             </div>
                         </>
-                    )}
-                    {!isLogin && (
-                        <div className="mb-4 flex items-center">
-                            <input
-                                type="checkbox"
-                                id="terms"
-                                checked={acceptedTerms}
-                                onChange={handleCheckboxChange}
-                                className="mr-2"
-                            />
-                            <label htmlFor="terms" className="text-sm text-gray-700">
-                                Acepto los <span className="text-yellow-500">términos y condiciones</span> para recibir correos electrónicos.
-                            </label>
-                        </div>
                     )}
                     <button
                         type="submit"
