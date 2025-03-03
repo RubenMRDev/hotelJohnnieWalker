@@ -1,25 +1,61 @@
-import { render, screen } from "@testing-library/react";
-import Review from './Review';
-import "@testing-library/jest-dom";
+import React from 'react';
+import { render, screen, fireEvent, act, within } from '@testing-library/react';
+import ResenyasCarousel from './Review.jsx';
+import { expect } from 'chai';
 
-describe("Review Component", () => {
+describe('ResenyasCarousel Component', () => {
+  it('Muestra mensaje cuando no hay reseñas disponibles', () => {
+    render(<ResenyasCarousel resenyas={[]} />);
+    expect(screen.getByText("No hay reseñas disponibles.")).to.exist;
+  });
 
+  it('Renderiza correctamente la información de una reseña en la diapositiva activa', () => {
+    const sampleReviews = [
+      {
+        name: "Juan Perez",
+        date: "01/01/2025",
+        rating: 4.5,
+        text: "Muy bueno!"
+      }
+    ];
+    const { container } = render(<ResenyasCarousel resenyas={sampleReviews} />);
+    
+    const activeSlide = container.querySelector('.slick-active');
+    expect(activeSlide).to.exist;
+    
+    const activeWithin = within(activeSlide);
+    expect(activeWithin.getByText("Juan Perez")).to.exist;
+    expect(activeWithin.getByText("01/01/2025")).to.exist;
+    expect(activeWithin.getByText("Muy bueno!")).to.exist;
+    
+    expect(activeWithin.getByText(/★★★★☆/)).to.exist;
+  });
 
-    test("Should render the reviewer's name and date correctly", () => {
-        render(<Review nombre="John Doe" fecha="January 1, 2024" calificacion={5} texto="Great experience!" />);
-        expect(screen.getByText("John Doe")).toBeInTheDocument();
-        expect(screen.getByText("January 1, 2024")).toBeInTheDocument();
+  it('Muestra u oculta las flechas de navegación según el ancho de la ventana', () => {
+    const sampleReviews = [
+      {
+        name: "Juan Perez",
+        date: "01/01/2025",
+        rating: 4,
+        text: "Excelente!"
+      }
+    ];
+
+    act(() => {
+      window.innerWidth = 800;
+      window.dispatchEvent(new Event("resize"));
     });
+    const { unmount } = render(<ResenyasCarousel resenyas={sampleReviews} />);
+    expect(screen.getByText("◀")).to.exist;
+    expect(screen.getByText("▶")).to.exist;
+    unmount();
 
-    test("Should display the correct rating stars", () => {
-        render(<Review nombre="John Doe" fecha="January 1, 2024" calificacion={4.5} texto="Great experience!" />);
-        expect(screen.getByText("★★★★☆")).toBeInTheDocument();
+    act(() => {
+      window.innerWidth = 500;
+      window.dispatchEvent(new Event("resize"));
     });
-
-    test("Should render the review text correctly", () => {
-        render(<Review nombre="John Doe" fecha="January 1, 2024" calificacion={4} texto="Amazing hotel, loved it!" />);
-        expect(screen.getByText("Amazing hotel, loved it!")).toBeInTheDocument();
-    });
-
+    render(<ResenyasCarousel resenyas={sampleReviews} />);
+    expect(screen.queryByText("◀")).to.be.null;
+    expect(screen.queryByText("▶")).to.be.null;
+  });
 });
-

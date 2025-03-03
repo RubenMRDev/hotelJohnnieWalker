@@ -1,34 +1,48 @@
-import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import RestaurantCard from "./RestaurantCard";
-import { describe, it, expect } from "vitest";
+import React from 'react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import RestaurantCard from './RestaurantCard.jsx';
+import Swal from 'sweetalert2';
+import { expect } from 'chai';
+import sinon from 'sinon';
 
-describe("RestaurantCard", () => {
-  it("debería renderizar los botones", () => {
-    render(<RestaurantCard />);
-    const botonHorario = screen.getByText(/HORARIO/i);
-    const botonDisponibilidad = screen.getByText(/VER DISPONIBILIDAD/i);
-    const botonCarta = screen.getByText(/CARTA/i);
-
-    expect(botonHorario).toBeInTheDocument();
-    expect(botonDisponibilidad).toBeInTheDocument();
-    expect(botonCarta).toBeInTheDocument();
+describe('RestaurantCard Component', () => {
+  afterEach(() => {
+    sinon.restore();
   });
 
-  it("debería renderizar el texto 'Nuevo Restaurante'", () => {
+  it('Renderiza el componente con la imagen inicial correcta', () => {
     render(<RestaurantCard />);
-    const titulo = screen.getByText(/Nuevo Restaurante/i);
-    expect(titulo).toBeInTheDocument();
+    const image = screen.getByAltText("Nuevo Restaurante");
+    expect(image).to.exist;
+    expect(image.src).to.include("restaurant2_iohn5l.webp");
   });
 
-  it("debería renderizar las flechas de navegación", () => {
+  it('Cambia la imagen al hacer click en el botón de siguiente (next)', async () => {
     render(<RestaurantCard />);
-    const botones = screen.getAllByRole("button");
+    const image = screen.getByAltText("Nuevo Restaurante");
+    expect(image.src).to.include("restaurant2_iohn5l.webp");
 
-    const flechaIzquierda = botones[0];
-    const flechaDerecha = botones[1];
+    const buttons = screen.getAllByRole('button');
+    const nextButton = buttons[1];
+    fireEvent.click(nextButton);
 
-    expect(flechaIzquierda).toBeInTheDocument();
-    expect(flechaDerecha).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByAltText("Nuevo Restaurante").src).to.include("restaurant-6479818_skdtym.jpg");
+    });
+  });
+
+  it('Muestra modal de Carta al hacer click en el botón "Carta"', async () => {
+    const swalSpy = sinon.stub(Swal, "fire").resolves();
+    render(<RestaurantCard />);
+    const cartaButton = screen.getByText("Carta");
+    fireEvent.click(cartaButton);
+
+    await waitFor(() => {
+      expect(swalSpy.calledWithMatch({
+        title: sinon.match(/¡Disfruta de nuestra deliciosa carta!/),
+        text: "Descubre nuestros platos exclusivos y disfruta de una experiencia única.",
+        imageUrl: "https://res.cloudinary.com/dd5hetwb8/image/upload/menu_mh0axr.jpg",
+      })).to.be.true;
+    });
   });
 });

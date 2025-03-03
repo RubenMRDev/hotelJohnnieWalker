@@ -1,25 +1,26 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom"; 
-import MainHotel from "./MainHotel";
+import MainRestaurant from "./MainRestaurant";
+import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 
-describe("MainHotel Component", () => {
-  test("renders MainHotel component correctly", () => {
+
+describe("MainRestaurant Component", () => {
+  test("renders MainRestaurant component correctly", () => {
     render(
       <BrowserRouter>
-        <MainHotel />
+        <MainRestaurant />
       </BrowserRouter>
     );
 
     expect(screen.getByText("JOHNNIE WALKER")).toBeInTheDocument();
-    expect(screen.getByText("HOTEL")).toBeInTheDocument();
+    expect(screen.getByText("RESTAURANTE")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Reservar/i })).toBeInTheDocument();
   });
 
   test("button has correct styles and text", () => {
     render(
       <BrowserRouter>
-        <MainHotel />
+        <MainRestaurant />
       </BrowserRouter>
     );
 
@@ -34,13 +35,13 @@ describe("MainHotel Component", () => {
     
     render(
       <BrowserRouter>
-        <MainHotel />
+        <MainRestaurant />
       </BrowserRouter>
     );
     
     const button = screen.getByRole("button", { name: /Reservar/i });
     fireEvent.click(button);
     
-    expect(window.location.href).toBe("/reservehotel");
+    expect(window.location.href).toBe("/reserverestaurant");
   });
 });

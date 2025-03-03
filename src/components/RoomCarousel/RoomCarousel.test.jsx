@@ -1,60 +1,65 @@
-import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import RoomCarousel from "./RoomCarousel";
-import { describe, it, expect, vi } from "vitest";
+import React from 'react';
+import { render, screen, fireEvent, act, within } from '@testing-library/react';
+import RoomCarousel from './RoomCarousel.jsx';
+import { expect } from 'chai';
+import sinon from 'sinon';
 
-vi.mock("react-slick", () => {
-    return {
-        default: ({ children }) => <div>{children}</div>,
-    };
-});
+describe('RoomCarousel Component', () => {
+  const sampleRoom = {
+    type: "Suite Deluxe",
+    description: "Una habitación de lujo con vistas al mar",
+    price: 150,
+    images: [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg"
+    ]
+  };
 
-describe("RoomCarousel", () => {
-    it("debería renderizar el título de la habitación", () => {
-        render(<RoomCarousel />);
-        const title = screen.getByText(/Habitación estándar con 1 o 2 camas/i);
-        expect(title).toBeInTheDocument();
+  it('No renderiza nada si no se proporciona room', () => {
+    const { container } = render(<RoomCarousel room={null} onReserve={() => {}} />);
+    expect(container.innerHTML).to.equal("");
+  });
+
+  it('Renderiza correctamente la información de la habitación y maneja la reserva', () => {
+    const onReserveSpy = sinon.spy();
+    const { container } = render(<RoomCarousel room={sampleRoom} onReserve={onReserveSpy} />);
+    
+    expect(screen.getByText(sampleRoom.type)).to.exist;
+    
+    expect(screen.getByText(sampleRoom.description)).to.exist;
+    
+    const reserveButton = screen.getByRole('button', { name: `Reservar por ${sampleRoom.price}€` });
+    expect(reserveButton).to.exist;
+    
+    const activeSlide = container.querySelector('.slick-slide.slick-active[aria-hidden="false"]');
+    expect(activeSlide).to.exist;
+    
+    const { getByAltText } = within(activeSlide);
+    const image1 = getByAltText(`${sampleRoom.type} 1`);
+    expect(image1).to.exist;
+    expect(image1.src).to.include("https://example.com/image1.jpg");
+    
+    fireEvent.click(reserveButton);
+    expect(onReserveSpy.calledOnce).to.be.true;
+    expect(onReserveSpy.calledWith(sampleRoom)).to.be.true;
+  });
+
+  it('Muestra u oculta las flechas de navegación según el ancho de la ventana', () => {
+    act(() => {
+      window.innerWidth = 800;
+      window.dispatchEvent(new Event("resize"));
     });
+    let { container, unmount } = render(<RoomCarousel room={sampleRoom} onReserve={() => {}} />);
+    expect(container.querySelector('.slick-prev')).to.exist;
+    expect(container.querySelector('.slick-next')).to.exist;
+    unmount();
 
-    it("debería renderizar la descripción de la habitación", () => {
-        render(<RoomCarousel />);
-        const description = screen.getByText(
-            /Perfecta para una estancia corta, cama individual, baño privado y ambiente tranquilo./i
-        );
-        expect(description).toBeInTheDocument();
+    act(() => {
+      window.innerWidth = 500;
+      window.dispatchEvent(new Event("resize"));
     });
-
-    it("debería renderizar el selector de camas", () => {
-        render(<RoomCarousel />);
-        const bedsSelect = screen.getByRole("combobox", {
-            name: /Selecciona las camas simples que quieres en la habitación:/i,
-        });
-        expect(bedsSelect).toBeInTheDocument();
-    });
-
-    it("debería renderizar el botón de reserva", () => {
-        render(<RoomCarousel />);
-        const reserveButton = screen.getByRole("button", {
-            name: /Reservar por \$\(€\)/i,
-        });
-        expect(reserveButton).toBeInTheDocument();
-    });
-
-    it("debería renderizar las imágenes de la habitación", () => {
-        render(<RoomCarousel />);
-        const images = screen.getAllByRole("img");
-        expect(images).toHaveLength(3);
-    });
-
-    it("debería renderizar tres indicadores de diapositivas con uno activo", () => {
-        const { container } = render(<RoomCarousel />);
-        const indicatorElements = container.querySelectorAll(
-            ".w-3.h-3.rounded-full"
-        );
-        expect(indicatorElements).toHaveLength(3);
-        const activeIndicators = Array.from(indicatorElements).filter((el) =>
-            el.classList.contains("bg-gray-700") 
-        );
-        expect(activeIndicators).toHaveLength(1);
-    });
+    ({ container } = render(<RoomCarousel room={sampleRoom} onReserve={() => {}} />));
+    expect(container.querySelector('.slick-prev')).to.be.null;
+    expect(container.querySelector('.slick-next')).to.be.null;
+  });
 });
