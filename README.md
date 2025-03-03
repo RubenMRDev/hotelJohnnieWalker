@@ -117,20 +117,20 @@ Mobile Version 📱
 
 <h1>⚙️ Stacks & Libraries 📖</h1>
 
-1. **Stacks**
-- **Backend**: Fake-API
+1. **Stacks**:
+- **Backend**: Fake-API (JSON File)
 - **Frontend**: React & Tailwind CSS
 
 2. **Libraries**:
-- **cloudinary**
+- **cloudinary-react**
 - **emailjs-com**
 - **framer-motion**
 - **react-datepicker**
 - **react-router-dom**
 - **react-select**
 - **react-slick**
-- **sweetalert2**
 - **slick-carousel**
+- **sweetalert2**
 
 <h1>🔧 Installation</h1>
 
