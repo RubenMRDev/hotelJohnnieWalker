@@ -2,17 +2,20 @@ import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Rooms from "../../data/Rooms";
+import Rooms from "../../data/rooms.json";
 
 const RoomCarousel = ({ room, onReserve }) => {
-    if (!room) return null; 
+    if (!room) return null;
 
-    const [showArrows, setShowArrows] = useState(window.innerWidth >= 768);
+    const [showArrows, setShowArrows] = useState(false);
 
     useEffect(() => {
-        const handleResize = () => setShowArrows(window.innerWidth >= 768);
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
+        if (typeof window !== "undefined") {
+            setShowArrows(window.innerWidth >= 768);
+            const handleResize = () => setShowArrows(window.innerWidth >= 768);
+            window.addEventListener("resize", handleResize);
+            return () => window.removeEventListener("resize", handleResize);
+        }
     }, []);
 
     const settings = {
@@ -42,7 +45,11 @@ const RoomCarousel = ({ room, onReserve }) => {
                 <Slider {...settings} className="rounded-lg overflow-hidden">
                     {room.images.map((image, index) => (
                         <div key={index} className="px-2">
-                            <img src={image} alt={`${room.type} ${index + 1}`} className="w-full aspect-video object-cover rounded-lg" />
+                            <img
+                                src={image}
+                                alt={`${room.type} ${index + 1}`}
+                                className="w-full aspect-video object-cover rounded-lg"
+                            />
                         </div>
                     ))}
                 </Slider>
@@ -60,6 +67,5 @@ const RoomCarousel = ({ room, onReserve }) => {
         </div>
     );
 };
-
 
 export default RoomCarousel;

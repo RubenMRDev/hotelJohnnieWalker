@@ -17,7 +17,7 @@ const InteriorViewCard = () => {
   return (
     <div className="flex justify-center items-center p-4 mb-12">
       <div className="max-w-4xl w-full relative">
-        <h2 className="text-2xl font-semibold text-left mb-4">Vistas de interior:</h2>
+        <h2 className="text-2xl font-semibold text-left mb-4">Vistas de interior</h2>
 
         <div className="relative w-full h-[400px] bg-gray-900 overflow-hidden rounded-2xl shadow-lg">
           <AnimatePresence>

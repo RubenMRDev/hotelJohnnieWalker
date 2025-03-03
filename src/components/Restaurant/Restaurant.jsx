@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import emailjs from "emailjs-com";
+import es from 'date-fns/locale/es';
 
 const RestaurantReservation = () => {
   const [adults, setAdults] = useState(2);
@@ -135,7 +136,7 @@ const RestaurantReservation = () => {
         <div className="mb-4">
           <label className="block text-sm font-medium mb-1">Fecha</label>
           <DatePicker selected={date} onChange={setDate} dateFormat="dd/MM/yyyy" minDate={new Date()} className="border p-2 w-full rounded" 
-            wrapperClassName="w-full" />
+            wrapperClassName="w-full" locale={es} />
         </div>
 
         <div className="mb-4 relative">

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import RoomCarousel from "../RoomCarousel/RoomCarousel";
-import Rooms from "../../data/Rooms";
+import roomsData from "../../data/rooms.json";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
+import es from 'date-fns/locale/es';
 
 function BookHotel() {
   const [selectedBeds, setSelectedBeds] = useState("");
@@ -14,7 +15,7 @@ function BookHotel() {
   const [filteredRooms, setFilteredRooms] = useState([]);
 
   const handleSearchClick = () => {
-    const results = Rooms.filter((room) => {
+    const results = roomsData.filter((room) => {
       return (
         (selectedBeds === "" || room.beds === selectedBeds) &&
         (selectedCapacity === "" || room.capacity >= parseInt(selectedCapacity))
@@ -110,7 +111,9 @@ function BookHotel() {
               onChange={(date) => setCheckInDate(date)}
               dateFormat="dd/MM/yyyy"
               minDate={new Date()}
-              className="w-full p-2 border border-gray-300 rounded-md text-sm"
+              className="border p-2 w-full rounded"
+              wrapperClassName="w-full"
+              locale={es}
             />
           </div>
           <div className="flex flex-col">
@@ -122,7 +125,9 @@ function BookHotel() {
               onChange={(date) => setCheckOutDate(date)}
               dateFormat="dd/MM/yyyy"
               minDate={new Date()}
-              className="w-full p-2 border border-gray-300 rounded-md text-sm"
+              className="border p-2 w-full rounded"
+              wrapperClassName="w-full"
+              locale={es}
             />
           </div>
           <div className="flex flex-col">
