@@ -118,7 +118,7 @@ Book your room now and enjoy a unique hospitality experience!
 <h1>⚙️ Stacks & Libraries 📖</h1>
 
 1. **Stacks**:
-- **Backend**: Fake-API (JSON File)
+- **Backend**: Fake-API (JSON Server)
 - **Frontend**: React & Tailwind CSS
 
 2. **Libraries**:
@@ -174,11 +174,11 @@ Book your room now and enjoy a unique hospitality experience!
   </thead>
   <tbody>
     <tr>
-      <td>Main Hotel Test</td>
-      <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740951965/Screenshot_4_n18uys.jpg" width="650"></td>
+      <td>Restaurant Test</td>
+      <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740993542/Screenshot_h5e176.png" width="650"></td>
     </tr>
     <tr>
-      <td>Restaurant Test</td>
+      <td>Main Hotel Test</td>
       <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740951965/Screenshot_4_n18uys.jpg" width="650"></td>
     </tr>
     <tr>
