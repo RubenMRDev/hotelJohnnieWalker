@@ -19,6 +19,10 @@ const LoginRegisterForm = () => {
   const [phoneError, setPhoneError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
+  const generateRandomId = () => {
+    return String(Date.now()) + String(Math.floor(Math.random() * 1000));
+  };
+
   useEffect(() => {
     if (localStorage.getItem("isLogged") === "true") {
       navigate("/profile");
@@ -71,20 +75,16 @@ const LoginRegisterForm = () => {
   };
 
   const saveUserData = async (userData) => {
-
     localStorage.setItem("userData", JSON.stringify(userData));
-    localStorage.setItem("userID", String(userData.id)); 
+    localStorage.setItem("userID", String(userData.id));
 
     if (!isLogin) {
-   
       const response = await fetch("http://localhost:5000/users");
       const registeredUsers = await response.json();
       const userWithPassword = {
         ...userData,
         password: formData.password,
-        id: String(registeredUsers.length + 1),
       };
-
 
       await fetch("http://localhost:5000/users", {
         method: "POST",
@@ -177,7 +177,7 @@ const LoginRegisterForm = () => {
         email: formData.email,
         phone: formData.phone,
         countryCode: formData.countryCode,
-        id: String(registeredUsers.length + 1),
+        id: generateRandomId(),
       };
       await saveUserData(userDataToSave);
       localStorage.setItem("isLogged", "true");
@@ -186,19 +186,32 @@ const LoginRegisterForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-200 to-gray-100 relative">
+    <div
+      className="min-h-screen flex items-center justify-center bg-cover bg-center relative"
+      style={{
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')",
+      }}
+    >
+      {/* Degradado superior */}
       <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-[#0C1440] to-transparent"></div>
+      {/* Degradado inferior */}
+      <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-[#0C1440] to-transparent"></div>
       <div className="bg-white rounded-2xl shadow-xl p-8 w-96 relative z-10">
         <div className="flex justify-between border-b-2 pb-3 mb-6">
           <button
             onClick={() => setIsLogin(true)}
-            className={`text-lg font-semibold px-4 py-1 ${isLogin ? "border-b-4 border-yellow-500 text-gray-900" : "text-gray-500 hover:text-gray-900"}`}
+            className={`text-lg font-semibold px-4 py-1 ${
+              isLogin ? "border-b-4 border-yellow-500 text-gray-900" : "text-gray-500 hover:text-gray-900"
+            }`}
           >
             Inicia Sesión
           </button>
           <button
             onClick={() => setIsLogin(false)}
-            className={`text-lg font-semibold px-4 py-1 ${!isLogin ? "border-b-4 border-yellow-500 text-gray-900" : "text-gray-500 hover:text-gray-900"}`}
+            className={`text-lg font-semibold px-4 py-1 ${
+              !isLogin ? "border-b-4 border-yellow-500 text-gray-900" : "text-gray-500 hover:text-gray-900"
+            }`}
           >
             Regístrate
           </button>
@@ -206,7 +219,9 @@ const LoginRegisterForm = () => {
         <form onSubmit={handleFormSubmit}>
           {!isLogin && (
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">Nombre y apellidos:</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Nombre y apellidos:
+              </label>
               <input
                 type="text"
                 name="name"
@@ -229,23 +244,27 @@ const LoginRegisterForm = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Contraseña:</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Contraseña:
+            </label>
             <input
               type="password"
               name="password"
               value={formData.password}
               onChange={handleInputChange}
-              className={`w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-yellow-500 focus:outline-none ${passwordError ? "border-red-500" : ""}`}
+              className={`w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-yellow-500 focus:outline-none ${
+                passwordError ? "border-red-500" : ""
+              }`}
               required
             />
-            {passwordError && (
-              <p className="text-red-500 text-xs mt-1">{passwordError}</p>
-            )}
+            {passwordError && <p className="text-red-500 text-xs mt-1">{passwordError}</p>}
           </div>
           {!isLogin && (
             <>
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Repite Contraseña:</label>
+                <label className="block text-sm font-medium text-gray-700">
+                  Repite Contraseña:
+                </label>
                 <input
                   type="password"
                   name="confirmPassword"
@@ -256,7 +275,9 @@ const LoginRegisterForm = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Número de teléfono:</label>
+                <label className="block text-sm font-medium text-gray-700">
+                  Número de teléfono:
+                </label>
                 <div className="flex">
                   <div className="w-1/3 border border-gray-300 rounded-l-lg p-3 focus:ring-2 focus:ring-yellow-500 focus:outline-none">
                     <Select
@@ -272,7 +293,9 @@ const LoginRegisterForm = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className={`w-2/3 border border-gray-300 rounded-r-lg p-3 focus:ring-2 focus:ring-yellow-500 focus:outline-none ${phoneError ? "border-red-500" : ""}`}
+                    className={`w-2/3 border border-gray-300 rounded-r-lg p-3 focus:ring-2 focus:ring-yellow-500 focus:outline-none ${
+                      phoneError ? "border-red-500" : ""
+                    }`}
                     required
                   />
                 </div>

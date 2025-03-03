@@ -196,59 +196,80 @@ export default function ProfilePage() {
       return;
     }
 
-    const userId = storedUserData.id;
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Esta acción eliminará tu perfil y todas tus reservas. ¡Esta acción no se puede deshacer!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#D9B26A",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, eliminar mi cuenta",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const userId = storedUserData.id;
 
-    try {
-      const userResponse = await fetch(`http://localhost:5000/users/${userId}`);
-      if (!userResponse.ok) {
-        throw new Error("Usuario no encontrado.");
+          // Verifica que el usuario exista
+          const userResponse = await fetch(`http://localhost:5000/users/${userId}`);
+          if (!userResponse.ok) {
+            throw new Error("Usuario no encontrado.");
+          }
+
+          // Eliminar todas las reservas de restaurante asociadas al usuario
+          const restaurantResponse = await fetch(`http://localhost:5000/restaurants?userId=${userId}`);
+          const restaurantReservations = await restaurantResponse.json();
+          await Promise.all(
+            restaurantReservations.map((reservation) =>
+              fetch(`http://localhost:5000/restaurants/${reservation.id}`, {
+                method: "DELETE",
+              })
+            )
+          );
+
+          // Eliminar todas las reservas de hotel asociadas al usuario
+          const hotelResponse = await fetch(`http://localhost:5000/hotels?userId=${userId}`);
+          const hotelReservations = await hotelResponse.json();
+          await Promise.all(
+            hotelReservations.map((reservation) =>
+              fetch(`http://localhost:5000/hotels/${reservation.id}`, {
+                method: "DELETE",
+              })
+            )
+          );
+
+          // Eliminar el usuario
+          const deleteUserResponse = await fetch(`http://localhost:5000/users/${userId}`, {
+            method: "DELETE",
+          });
+
+          if (!deleteUserResponse.ok) {
+            throw new Error("Error al eliminar el usuario.");
+          }
+
+          localStorage.removeItem("isLogged");
+          localStorage.removeItem("userData");
+          localStorage.removeItem("reservations");
+          localStorage.removeItem("restaurantReservations");
+
+          Swal.fire({
+            title: "¡Perfil eliminado!",
+            text: "Tu perfil y todas tus reservas han sido eliminados.",
+            icon: "success",
+            confirmButtonColor: "#D9B26A",
+          }).then(() => {
+            window.location.href = "/";
+          });
+        } catch (error) {
+          Swal.fire({
+            title: "¡Error!",
+            text: error.message,
+            icon: "error",
+            confirmButtonColor: "#D9B26A",
+          });
+        }
       }
-
-      const restaurantResponse = await fetch(`http://localhost:5000/restaurants?userId=${userId}`);
-      const restaurantReservations = await restaurantResponse.json();
-      for (const reservation of restaurantReservations) {
-        await fetch(`http://localhost:5000/restaurants/${reservation.id}`, {
-          method: "DELETE",
-        });
-      }
-
-      const hotelResponse = await fetch(`http://localhost:5000/hotels?userId=${userId}`);
-      const hotelReservations = await hotelResponse.json();
-      for (const reservation of hotelReservations) {
-        await fetch(`http://localhost:5000/hotels/${reservation.id}`, {
-          method: "DELETE",
-        });
-      }
-
-      const deleteUserResponse = await fetch(`http://localhost:5000/users/${userId}`, {
-        method: "DELETE",
-      });
-
-      if (!deleteUserResponse.ok) {
-        throw new Error("Error al eliminar el usuario.");
-      }
-
-      localStorage.removeItem("isLogged");
-      localStorage.removeItem("userData");
-      localStorage.removeItem("reservations");
-      localStorage.removeItem("restaurantReservations");
-
-      Swal.fire({
-        title: "¡Perfil eliminado!",
-        text: "Tu perfil y todas tus reservas han sido eliminados.",
-        icon: "success",
-        confirmButtonColor: "#D9B26A",
-      }).then(() => {
-        window.location.href = "/";
-      });
-    } catch (error) {
-      Swal.fire({
-        title: "¡Error!",
-        text: error.message,
-        icon: "error",
-        confirmButtonColor: "#D9B26A",
-      });
-    }
+    });
   };
 
   return (
