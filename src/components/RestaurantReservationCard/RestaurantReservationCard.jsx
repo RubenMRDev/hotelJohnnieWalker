@@ -31,11 +31,6 @@ const RestaurantReservationCard = ({
           <div>
             <span className="font-semibold">Niños:</span> {children}
           </div>
-          {comments && (
-            <div>
-              <span className="font-semibold">Comentarios:</span> {comments}
-            </div>
-          )}
         </div>
       </div>
 

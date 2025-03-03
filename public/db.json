@@ -10,5 +10,16 @@
     }
   ],
   "hotels": [],
-  "restaurants": []
+  "restaurants": [
+    {
+      "id": "62bd",
+      "userId": "1",
+      "type": "Restaurante",
+      "adults": 3,
+      "children": 2,
+      "date": "3/3/2025",
+      "time": "19:00",
+      "comments": "test"
+    }
+  ]
 }
