@@ -3,10 +3,8 @@ import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import emailjs from "emailjs-com";
-import { useNavigate } from "react-router-dom";
 
 const RestaurantReservation = () => {
-  const navigate = useNavigate();
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [date, setDate] = useState(new Date());
@@ -63,7 +61,6 @@ const RestaurantReservation = () => {
     });
     const createdReservation = await response.json(); 
 
-    
     const storedReservations = JSON.parse(localStorage.getItem("restaurantReservations")) || [];
     localStorage.setItem(
       "restaurantReservations",
@@ -101,9 +98,9 @@ const RestaurantReservation = () => {
           text: "Su reserva ha sido realizada y guardada. Se ha enviado una confirmación a su correo electrónico.",
           icon: "success",
           confirmButtonColor: "#D9B26A",
+        }).then(() => {
+          window.location.href = "/main";
         });
-
-        navigate("/main");
       },
       (error) => {
         Swal.fire({

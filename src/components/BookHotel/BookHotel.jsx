@@ -56,7 +56,6 @@ function BookHotel() {
       image: room.images[0],
     };
 
-
     const response = await fetch("http://localhost:5000/hotels", {
       method: "POST",
       headers: {
@@ -64,8 +63,7 @@ function BookHotel() {
       },
       body: JSON.stringify(newReservation),
     });
-    const createdReservation = await response.json(); 
-
+    const createdReservation = await response.json();
 
     const storedReservations = JSON.parse(localStorage.getItem("reservations")) || [];
     localStorage.setItem(
@@ -78,6 +76,8 @@ function BookHotel() {
       text: "Tu reserva ha sido realizada.",
       icon: "success",
       confirmButtonColor: "#D9B26A",
+    }).then(() => {
+      window.location.href = "/main";
     });
   };
 
@@ -110,7 +110,7 @@ function BookHotel() {
               onChange={(date) => setCheckInDate(date)}
               dateFormat="dd/MM/yyyy"
               minDate={new Date()}
-              className="p-2 border border-gray-300 rounded-md text-sm"
+              className="w-full p-2 border border-gray-300 rounded-md text-sm"
             />
           </div>
           <div className="flex flex-col">
@@ -122,7 +122,7 @@ function BookHotel() {
               onChange={(date) => setCheckOutDate(date)}
               dateFormat="dd/MM/yyyy"
               minDate={new Date()}
-              className="p-2 border border-gray-300 rounded-md text-sm"
+              className="w-full p-2 border border-gray-300 rounded-md text-sm"
             />
           </div>
           <div className="flex flex-col">

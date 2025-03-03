@@ -13,31 +13,23 @@ export default function ProfilePage() {
   const [hotelReservations, setHotelReservations] = useState([]);
   const [restaurantReservations, setRestaurantReservations] = useState([]);
 
-
   useEffect(() => {
     const storedUserData = JSON.parse(localStorage.getItem("userData"));
     if (storedUserData) {
-      console.log("User ID:", storedUserData.id);
       setUserData(storedUserData);
       fetchReservations(storedUserData.id);
-    } else {
-      console.error("No se encontraron datos del usuario en localStorage.");
     }
   }, []);
 
-
   const fetchReservations = async (userId) => {
     try {
-
       const hotelResponse = await fetch(`http://localhost:5000/hotels?userId=${userId}`);
       const hotelData = await hotelResponse.json();
       setHotelReservations(hotelData);
 
-
       const restaurantResponse = await fetch(`http://localhost:5000/restaurants?userId=${userId}`);
       const restaurantData = await restaurantResponse.json();
       setRestaurantReservations(restaurantData);
-
 
       localStorage.setItem("reservations", JSON.stringify(hotelData));
       localStorage.setItem("restaurantReservations", JSON.stringify(restaurantData));
@@ -50,7 +42,6 @@ export default function ProfilePage() {
       });
     }
   };
-
 
   const handleEditProfile = () => {
     Swal.fire({
@@ -70,23 +61,59 @@ export default function ProfilePage() {
         if (!name || !email || !phone) {
           Swal.showValidationMessage("Por favor, llena todos los campos");
         }
-        return { name, email, phone, id: userData.id }; 
+        return { name, email, phone };
       },
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        const newUserData = result.value;
-        setUserData(newUserData);
-        localStorage.setItem("userData", JSON.stringify(newUserData));
-        Swal.fire({
-          title: "¡Actualizado!",
-          text: "Tu perfil se ha actualizado.",
-          icon: "success",
-          confirmButtonColor: "#D9B26A",
-        });
+        try {
+          // Obtener los datos actuales del usuario desde el servidor
+          const response = await fetch(`http://localhost:5000/users/${userData.id}`);
+          if (!response.ok) {
+            throw new Error("Error al obtener los datos del usuario");
+          }
+          const currentUserData = await response.json();
+
+          // Combinar los datos actuales con los nuevos valores
+          const updatedUserData = {
+            ...currentUserData, // Conserva todos los campos existentes (como countryCode, password)
+            name: result.value.name,
+            email: result.value.email,
+            phone: result.value.phone,
+          };
+
+          // Enviar la actualización al servidor
+          const updateResponse = await fetch(`http://localhost:5000/users/${userData.id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedUserData),
+          });
+
+          if (!updateResponse.ok) {
+            throw new Error("Error al actualizar el perfil en el servidor");
+          }
+
+          setUserData(updatedUserData);
+          localStorage.setItem("userData", JSON.stringify(updatedUserData));
+
+          Swal.fire({
+            title: "¡Actualizado!",
+            text: "Tu perfil se ha actualizado.",
+            icon: "success",
+            confirmButtonColor: "#D9B26A",
+          });
+        } catch (error) {
+          Swal.fire({
+            title: "¡Error!",
+            text: "No se pudo actualizar el perfil.",
+            icon: "error",
+            confirmButtonColor: "#D9B26A",
+          });
+        }
       }
     });
   };
-
 
   const handleCancelHotelReservation = async (id) => {
     try {
@@ -98,7 +125,6 @@ export default function ProfilePage() {
         throw new Error("Error al eliminar la reserva");
       }
 
-      // Actualizar el estado local
       const updatedReservations = hotelReservations.filter(
         (reservation) => reservation.id !== id
       );
@@ -121,7 +147,6 @@ export default function ProfilePage() {
     }
   };
 
-
   const handleCancelRestaurantReservation = async (id) => {
     try {
       const response = await fetch(`http://localhost:5000/restaurants/${id}`, {
@@ -131,7 +156,6 @@ export default function ProfilePage() {
       if (!response.ok) {
         throw new Error("Error al eliminar la reserva");
       }
-
 
       const updatedReservations = restaurantReservations.filter(
         (reservation) => reservation.id !== id
@@ -155,7 +179,6 @@ export default function ProfilePage() {
     }
   };
 
-
   const handleLogout = () => {
     localStorage.removeItem("isLogged");
     localStorage.removeItem("userData");
@@ -163,7 +186,6 @@ export default function ProfilePage() {
     localStorage.removeItem("restaurantReservations");
     window.location.href = "/";
   };
-
 
   const handleDeleteProfile = async () => {
     const storedUserData = JSON.parse(localStorage.getItem("userData"));
@@ -180,7 +202,6 @@ export default function ProfilePage() {
     const userId = storedUserData.id;
 
     try {
-
       const userResponse = await fetch(`http://localhost:5000/users/${userId}`);
       if (!userResponse.ok) {
         throw new Error("Usuario no encontrado.");
@@ -194,7 +215,6 @@ export default function ProfilePage() {
         });
       }
 
-
       const hotelResponse = await fetch(`http://localhost:5000/hotels?userId=${userId}`);
       const hotelReservations = await hotelResponse.json();
       for (const reservation of hotelReservations) {
@@ -203,7 +223,6 @@ export default function ProfilePage() {
         });
       }
 
-
       const deleteUserResponse = await fetch(`http://localhost:5000/users/${userId}`, {
         method: "DELETE",
       });
@@ -211,7 +230,6 @@ export default function ProfilePage() {
       if (!deleteUserResponse.ok) {
         throw new Error("Error al eliminar el usuario.");
       }
-
 
       localStorage.removeItem("isLogged");
       localStorage.removeItem("userData");
@@ -238,7 +256,6 @@ export default function ProfilePage() {
 
   return (
     <div className="max-w-max mx-auto bg-white min-h-screen p-4 pb-8">
-
       <div className="rounded-xl border border-[#e5e7eb] p-5 mb-4">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-center text-2xl font-medium">Mi Perfil</h1>
@@ -302,7 +319,6 @@ export default function ProfilePage() {
         )}
       </div>
 
-
       <div className="rounded-xl border border-[#e5e7eb] p-5 mb-4">
         <h2 className="text-[#6b7280] uppercase text-sm font-medium mb-4">
           Mis Reservas de Restaurante
@@ -343,4 +359,4 @@ export default function ProfilePage() {
       </div>
     </div>
   );
-} 
+}
