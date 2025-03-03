@@ -2,7 +2,7 @@
   <img src="https://res.cloudinary.com/dd5hetwb8/image/upload/w_400,h_200/logo_fqorec.png" alt="Hotel Johnnie Walker">
 </p>
 
-<h1>Johnnie Walker Hotel </h1>
+<h1>🌴 Johnnie Walker Hotel 🥥</h1>
 
 Experience luxury and comfort at Johnnie Walker Hotel, your perfect getaway destination. Our hotel offers elegantly designed rooms with a variety of features to suit your needs, ensuring a relaxing and unforgettable stay.
 
@@ -12,13 +12,36 @@ Book your room now and enjoy a unique hospitality experience!
 
 <h1>👥 Members & Roles</h1>
 
-| Nombre         | Rol                  |
-|---------------|----------------------|
-| [Rubén Martín Ruiz](https://github.com/RubenMRDev)    | SCRUM Master         |
-| [Jairo Alexandro Saborito Franco](https://github.com/JairoAlexandro/JairoAlexandro)   | Product owner               |
-| [Adrián Pérez Agredano](https://github.com/Sk4is)  | Developer        |
-| [Israel Abad Barrera](https://github.com/Israelab01) | Developer   |
-| [Samuel Utrilla Núñez](https://github.com/samuel-un) | Developer         |
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Rol</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://github.com/RubenMRDev">Rubén Martín Ruiz</a></td>
+      <td>SCRUM Master</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/JairoAlexandro/JairoAlexandro">Jairo Alexandro Saborito Franco</a></td>
+      <td>Product owner</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/Sk4is">Adrián Pérez Agredano</a></td>
+      <td>Developer</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/Israelab01">Israel Abad Barrera</a></td>
+      <td>Developer</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/samuel-un">Samuel Utrilla Núñez</a></td>
+      <td>Developer</td>
+    </tr>
+  </tbody>
+</table>
 
 <h1>📸 Screenshots</h1>
 
@@ -38,7 +61,6 @@ Desk Version 💻
     <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940748/Screenshot_27_gnguh0.jpg" alt="Johnnie Walker Hotel Landing page" width="850"></td>
   </tr>
 </table>
-
 
 <table align="center">
   <tr>
@@ -93,10 +115,22 @@ Mobile Version 📱
   </tr>
 </table>
 
-<h1>⚙️ Stacks</h1>
+<h1>⚙️ Stacks & Libraries 📖</h1>
 
+1. **Stacks**
 - **Backend**: Fake-API
 - **Frontend**: React & Tailwind CSS
+
+2. **Libraries**:
+- **cloudinary**
+- **emailjs-com**
+- **framer-motion**
+- **react-datepicker**
+- **react-router-dom**
+- **react-select**
+- **react-slick**
+- **sweetalert2**
+- **slick-carousel**
 
 <h1>🔧 Installation</h1>
 
@@ -134,14 +168,20 @@ Mobile Version 📱
       <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740951965/Screenshot_4_n18uys.jpg" width="650"></td>
     </tr>
     <tr>
+      <td>Restaurant Test</td>
+      <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740951965/Screenshot_4_n18uys.jpg" width="650"></td>
+    </tr>
+    <tr>
       <td>Restaurant Card Test</td>
       <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740951965/Screenshot_27_xtnumz.jpg" width="650"></td>
     </tr>
   </tbody>
 </table>
 
-<h1>📈 Metodology</h1>
+<h1>📈 Methodology</h1>
 
-In this project we have worked with Agile methodology, Pair programming and SCRUM.
+In this project we have worked with Agile Methodology, Pair Programming and SCRUM.
 
 <h1>👟 Next steps</h1>
+
+In the future we would like to polish the website well, add new functionalities and create a database where we will store the data of each client. We would also like to add more rooms so that the client can choose from a wider range of options.
