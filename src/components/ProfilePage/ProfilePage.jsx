@@ -66,22 +66,19 @@ export default function ProfilePage() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          // Obtener los datos actuales del usuario desde el servidor
           const response = await fetch(`http://localhost:5000/users/${userData.id}`);
           if (!response.ok) {
             throw new Error("Error al obtener los datos del usuario");
           }
           const currentUserData = await response.json();
 
-          // Combinar los datos actuales con los nuevos valores
           const updatedUserData = {
-            ...currentUserData, // Conserva todos los campos existentes (como countryCode, password)
+            ...currentUserData,
             name: result.value.name,
             email: result.value.email,
             phone: result.value.phone,
           };
 
-          // Enviar la actualización al servidor
           const updateResponse = await fetch(`http://localhost:5000/users/${userData.id}`, {
             method: "PUT",
             headers: {
@@ -327,9 +324,11 @@ export default function ProfilePage() {
           restaurantReservations.map((reservation) => (
             <div key={reservation.id} className="mb-4">
               <RestaurantReservationCard
-                name={reservation.restaurantName}
+                name={reservation.type || "Restaurante"}
                 date={reservation.date}
                 time={reservation.time}
+                adults={reservation.adults}
+                children={reservation.children}
                 onCancel={() => handleCancelRestaurantReservation(reservation.id)}
               />
             </div>
