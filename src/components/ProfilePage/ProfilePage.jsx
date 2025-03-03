@@ -210,13 +210,11 @@ export default function ProfilePage() {
         try {
           const userId = storedUserData.id;
 
-          // Verifica que el usuario exista
           const userResponse = await fetch(`http://localhost:5000/users/${userId}`);
           if (!userResponse.ok) {
             throw new Error("Usuario no encontrado.");
           }
 
-          // Eliminar todas las reservas de restaurante asociadas al usuario
           const restaurantResponse = await fetch(`http://localhost:5000/restaurants?userId=${userId}`);
           const restaurantReservations = await restaurantResponse.json();
           await Promise.all(
@@ -227,7 +225,6 @@ export default function ProfilePage() {
             )
           );
 
-          // Eliminar todas las reservas de hotel asociadas al usuario
           const hotelResponse = await fetch(`http://localhost:5000/hotels?userId=${userId}`);
           const hotelReservations = await hotelResponse.json();
           await Promise.all(
@@ -238,7 +235,6 @@ export default function ProfilePage() {
             )
           );
 
-          // Eliminar el usuario
           const deleteUserResponse = await fetch(`http://localhost:5000/users/${userId}`, {
             method: "DELETE",
           });

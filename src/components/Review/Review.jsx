@@ -56,7 +56,7 @@ const ResenyasCarousel = ({ resenyas = [] }) => {
     arrows: showArrows,
     prevArrow: <CustomPrevArrow />, 
     nextArrow: <CustomNextArrow />,
-    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex), // Actualiza el estado al cambiar de diapositiva
+    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
   };
 
   return (

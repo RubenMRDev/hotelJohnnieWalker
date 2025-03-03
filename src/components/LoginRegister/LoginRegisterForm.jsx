@@ -193,9 +193,7 @@ const LoginRegisterForm = () => {
           "url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')",
       }}
     >
-      {/* Degradado superior */}
       <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-[#0C1440] to-transparent"></div>
-      {/* Degradado inferior */}
       <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-[#0C1440] to-transparent"></div>
       <div className="bg-white rounded-2xl shadow-xl p-8 w-96 relative z-10">
         <div className="flex justify-between border-b-2 pb-3 mb-6">
