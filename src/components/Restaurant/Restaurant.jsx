@@ -6,7 +6,7 @@ import emailjs from "emailjs-com";
 import { useNavigate } from "react-router-dom";
 
 const RestaurantReservation = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [date, setDate] = useState(new Date());
@@ -19,7 +19,7 @@ const RestaurantReservation = () => {
     "18:00", "19:00", "20:00", "21:00", "22:00"
   ];
 
-  const handleReserveClick = () => {
+  const handleReserveClick = async () => {
     if (!date || !time) {
       Swal.fire({
         title: "¡Error!",
@@ -30,8 +30,22 @@ const RestaurantReservation = () => {
       return;
     }
 
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const userId = userData?.id;
+    const userEmail = userData?.email;
+
+    if (!userId) {
+      Swal.fire({
+        title: "¡Atención!",
+        text: "No hay usuario logueado. La reserva se ha guardado localmente pero no se enviará ninguna confirmación por correo.",
+        icon: "warning",
+        confirmButtonColor: "#D9B26A",
+      });
+      return;
+    }
+
     const newReservation = {
-      id: Date.now(),
+      userId,
       type: "Restaurante",
       adults,
       children,
@@ -40,11 +54,21 @@ const RestaurantReservation = () => {
       comments,
     };
 
-    const storedReservations = JSON.parse(localStorage.getItem("restaurantReservations")) || [];
-    localStorage.setItem("restaurantReservations", JSON.stringify([...storedReservations, newReservation]));
+    const response = await fetch("http://localhost:5000/restaurants", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newReservation),
+    });
+    const createdReservation = await response.json(); 
 
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    const userEmail = userData?.email;
+    
+    const storedReservations = JSON.parse(localStorage.getItem("restaurantReservations")) || [];
+    localStorage.setItem(
+      "restaurantReservations",
+      JSON.stringify([...storedReservations, createdReservation])
+    );
 
     if (!userEmail) {
       Swal.fire({

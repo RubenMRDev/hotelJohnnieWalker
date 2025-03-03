@@ -8,22 +8,49 @@ export default function ProfilePage() {
     name: "",
     email: "",
     phone: "",
+    id: null,
   });
   const [hotelReservations, setHotelReservations] = useState([]);
   const [restaurantReservations, setRestaurantReservations] = useState([]);
 
+
   useEffect(() => {
     const storedUserData = JSON.parse(localStorage.getItem("userData"));
     if (storedUserData) {
+      console.log("User ID:", storedUserData.id);
       setUserData(storedUserData);
+      fetchReservations(storedUserData.id);
+    } else {
+      console.error("No se encontraron datos del usuario en localStorage.");
     }
-    const storedHotelReservations =
-      JSON.parse(localStorage.getItem("reservations")) || [];
-    setHotelReservations(storedHotelReservations);
-    const storedRestaurantReservations =
-      JSON.parse(localStorage.getItem("restaurantReservations")) || [];
-    setRestaurantReservations(storedRestaurantReservations);
   }, []);
+
+
+  const fetchReservations = async (userId) => {
+    try {
+
+      const hotelResponse = await fetch(`http://localhost:5000/hotels?userId=${userId}`);
+      const hotelData = await hotelResponse.json();
+      setHotelReservations(hotelData);
+
+
+      const restaurantResponse = await fetch(`http://localhost:5000/restaurants?userId=${userId}`);
+      const restaurantData = await restaurantResponse.json();
+      setRestaurantReservations(restaurantData);
+
+
+      localStorage.setItem("reservations", JSON.stringify(hotelData));
+      localStorage.setItem("restaurantReservations", JSON.stringify(restaurantData));
+    } catch (error) {
+      Swal.fire({
+        title: "¡Error!",
+        text: "No se pudieron cargar las reservas.",
+        icon: "error",
+        confirmButtonColor: "#D9B26A",
+      });
+    }
+  };
+
 
   const handleEditProfile = () => {
     Swal.fire({
@@ -43,7 +70,7 @@ export default function ProfilePage() {
         if (!name || !email || !phone) {
           Swal.showValidationMessage("Por favor, llena todos los campos");
         }
-        return { name, email, phone };
+        return { name, email, phone, id: userData.id }; 
       },
     }).then((result) => {
       if (result.isConfirmed) {
@@ -60,28 +87,158 @@ export default function ProfilePage() {
     });
   };
 
-  const handleCancelHotelReservation = (id) => {
-    const updatedReservations = hotelReservations.filter(
-      (reservation) => reservation.id !== id
-    );
-    setHotelReservations(updatedReservations);
-    localStorage.setItem("reservations", JSON.stringify(updatedReservations));
+
+  const handleCancelHotelReservation = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/hotels/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al eliminar la reserva");
+      }
+
+      // Actualizar el estado local
+      const updatedReservations = hotelReservations.filter(
+        (reservation) => reservation.id !== id
+      );
+      setHotelReservations(updatedReservations);
+      localStorage.setItem("reservations", JSON.stringify(updatedReservations));
+
+      Swal.fire({
+        title: "¡Éxito!",
+        text: "La reserva ha sido borrada.",
+        icon: "success",
+        confirmButtonColor: "#D9B26A",
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "¡Error!",
+        text: error.message,
+        icon: "error",
+        confirmButtonColor: "#D9B26A",
+      });
+    }
   };
 
-  const handleCancelRestaurantReservation = (id) => {
-    const updatedReservations = restaurantReservations.filter(
-      (reservation) => reservation.id !== id
-    );
-    setRestaurantReservations(updatedReservations);
-    localStorage.setItem(
-      "restaurantReservations",
-      JSON.stringify(updatedReservations)
-    );
+
+  const handleCancelRestaurantReservation = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/restaurants/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al eliminar la reserva");
+      }
+
+
+      const updatedReservations = restaurantReservations.filter(
+        (reservation) => reservation.id !== id
+      );
+      setRestaurantReservations(updatedReservations);
+      localStorage.setItem("restaurantReservations", JSON.stringify(updatedReservations));
+
+      Swal.fire({
+        title: "¡Éxito!",
+        text: "La reserva ha sido borrada.",
+        icon: "success",
+        confirmButtonColor: "#D9B26A",
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "¡Error!",
+        text: error.message,
+        icon: "error",
+        confirmButtonColor: "#D9B26A",
+      });
+    }
+  };
+
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLogged");
+    localStorage.removeItem("userData");
+    localStorage.removeItem("reservations");
+    localStorage.removeItem("restaurantReservations");
+    window.location.href = "/";
+  };
+
+
+  const handleDeleteProfile = async () => {
+    const storedUserData = JSON.parse(localStorage.getItem("userData"));
+    if (!storedUserData) {
+      Swal.fire({
+        title: "¡Error!",
+        text: "No se encontraron datos del usuario.",
+        icon: "error",
+        confirmButtonColor: "#D9B26A",
+      });
+      return;
+    }
+
+    const userId = storedUserData.id;
+
+    try {
+
+      const userResponse = await fetch(`http://localhost:5000/users/${userId}`);
+      if (!userResponse.ok) {
+        throw new Error("Usuario no encontrado.");
+      }
+
+      const restaurantResponse = await fetch(`http://localhost:5000/restaurants?userId=${userId}`);
+      const restaurantReservations = await restaurantResponse.json();
+      for (const reservation of restaurantReservations) {
+        await fetch(`http://localhost:5000/restaurants/${reservation.id}`, {
+          method: "DELETE",
+        });
+      }
+
+
+      const hotelResponse = await fetch(`http://localhost:5000/hotels?userId=${userId}`);
+      const hotelReservations = await hotelResponse.json();
+      for (const reservation of hotelReservations) {
+        await fetch(`http://localhost:5000/hotels/${reservation.id}`, {
+          method: "DELETE",
+        });
+      }
+
+
+      const deleteUserResponse = await fetch(`http://localhost:5000/users/${userId}`, {
+        method: "DELETE",
+      });
+
+      if (!deleteUserResponse.ok) {
+        throw new Error("Error al eliminar el usuario.");
+      }
+
+
+      localStorage.removeItem("isLogged");
+      localStorage.removeItem("userData");
+      localStorage.removeItem("reservations");
+      localStorage.removeItem("restaurantReservations");
+
+      Swal.fire({
+        title: "¡Perfil eliminado!",
+        text: "Tu perfil y todas tus reservas han sido eliminados.",
+        icon: "success",
+        confirmButtonColor: "#D9B26A",
+      }).then(() => {
+        window.location.href = "/";
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "¡Error!",
+        text: error.message,
+        icon: "error",
+        confirmButtonColor: "#D9B26A",
+      });
+    }
   };
 
   return (
     <div className="max-w-max mx-auto bg-white min-h-screen p-4 pb-8">
-      {/* Información personal */}
+
       <div className="rounded-xl border border-[#e5e7eb] p-5 mb-4">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-center text-2xl font-medium">Mi Perfil</h1>
@@ -121,7 +278,6 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      {/* Reservas de Hotel */}
       <div className="rounded-xl border border-[#e5e7eb] p-5 mb-4">
         <h2 className="text-[#6b7280] uppercase text-sm font-medium mb-4">
           Mis Reservas de Hotel
@@ -146,7 +302,7 @@ export default function ProfilePage() {
         )}
       </div>
 
-      {/* Reservas de Restaurante */}
+
       <div className="rounded-xl border border-[#e5e7eb] p-5 mb-4">
         <h2 className="text-[#6b7280] uppercase text-sm font-medium mb-4">
           Mis Reservas de Restaurante
@@ -155,14 +311,10 @@ export default function ProfilePage() {
           restaurantReservations.map((reservation) => (
             <div key={reservation.id} className="mb-4">
               <RestaurantReservationCard
-                adults={reservation.adults}
-                children={reservation.children}
+                name={reservation.restaurantName}
                 date={reservation.date}
                 time={reservation.time}
-                comments={reservation.comments}
-                onCancel={() =>
-                  handleCancelRestaurantReservation(reservation.id)
-                }
+                onCancel={() => handleCancelRestaurantReservation(reservation.id)}
               />
             </div>
           ))
@@ -173,16 +325,22 @@ export default function ProfilePage() {
         )}
       </div>
 
-      <button
-        className="w-full text-center text-[#ef4444] py-3 border rounded-lg mb-4 border-[#e5e7eb] hover:bg-[#f3f4f6] hover:text-[#e11d48] transition-colors"
-        onClick={() => {
-          localStorage.removeItem("isLogged");
-          localStorage.removeItem("userData");
-          window.location.href = "/";
-        }}
-      >
-        Cerrar Sesión
-      </button>
+      <div className="text-center space-y-4">
+        <button
+          onClick={handleLogout}
+          className="text-blue-600 hover:text-blue-800 font-bold"
+        >
+          Cerrar sesión
+        </button>
+        <div>
+          <button
+            onClick={handleDeleteProfile}
+            className="text-red-600 hover:text-red-800 font-bold"
+          >
+            Eliminar mi cuenta
+          </button>
+        </div>
+      </div>
     </div>
   );
-}
+} 

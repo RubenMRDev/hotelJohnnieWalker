@@ -23,7 +23,7 @@ function BookHotel() {
     setFilteredRooms(results);
   };
 
-  const handleReserve = (room) => {
+  const handleReserve = async (room) => {
     if (!checkInDate || !checkOutDate) {
       Swal.fire({
         title: "¡Error!",
@@ -34,8 +34,21 @@ function BookHotel() {
       return;
     }
 
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const userId = userData?.id;
+
+    if (!userId) {
+      Swal.fire({
+        title: "¡Atención!",
+        text: "No hay usuario logueado. La reserva se ha guardado localmente pero no se enviará al servidor.",
+        icon: "warning",
+        confirmButtonColor: "#D9B26A",
+      });
+      return;
+    }
+
     const newReservation = {
-      id: Date.now(),
+      userId,
       room: room.type,
       price: room.price,
       checkIn: checkInDate.toLocaleDateString(),
@@ -43,10 +56,22 @@ function BookHotel() {
       image: room.images[0],
     };
 
-    const storedReservations = JSON.parse(localStorage.getItem("reservations")) || [];
-    const updatedReservations = [...storedReservations, newReservation];
 
-    localStorage.setItem("reservations", JSON.stringify(updatedReservations));
+    const response = await fetch("http://localhost:5000/hotels", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newReservation),
+    });
+    const createdReservation = await response.json(); 
+
+
+    const storedReservations = JSON.parse(localStorage.getItem("reservations")) || [];
+    localStorage.setItem(
+      "reservations",
+      JSON.stringify([...storedReservations, createdReservation])
+    );
 
     Swal.fire({
       title: "¡Reserva guardada con éxito!",

@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Ruben",
+      "email": "rubenmartinruiz05@gmail.com",
+      "phone": "89023498024",
+      "countryCode": "+34",
+      "password": "password"
+    },
+    {
+      "id": "2",
+      "name": "Andy",
+      "email": "andydeandylucas@gmail.com",
+      "phone": "423890809243",
+      "countryCode": "+34",
+      "password": "password"
+    }
+  ],
+  "hotels": [
+    {
+      "id": "ee73",
+      "userId": "1",
+      "room": "Habitación Estándar",
+      "price": "50",
+      "checkIn": "3/3/2025",
+      "checkOut": "6/3/2025",
+      "image": "https://res.cloudinary.com/dd5hetwb8/image/upload/v1740391254/habitacion_2_camas_simples_zdnafz.jpg"
+    }
+  ],
+  "restaurants": []
+}
