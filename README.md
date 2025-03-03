@@ -147,7 +147,17 @@ Book your room now and enjoy a unique hospitality experience!
     npm install
     ```
 
-3. **Start the Application**:
+3. **Install and Set Up JSON Server**:
+
+    ```bash
+    npm install -g json-server
+    ```
+
+    ```bash
+    json-server --watch db.json --port 5000
+    ```
+
+4. **Start the Application**:
 
     ```bash
     npm run dev
