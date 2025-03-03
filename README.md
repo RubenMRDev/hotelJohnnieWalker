@@ -26,7 +26,7 @@ Book your room now and enjoy a unique hospitality experience!
     </tr>
     <tr>
       <td><a href="https://github.com/JairoAlexandro/JairoAlexandro">Jairo Alexandro Saborito Franco</a></td>
-      <td>Product owner</td>
+      <td>Product Owner</td>
     </tr>
     <tr>
       <td><a href="https://github.com/Sk4is">Adrián Pérez Agredano</a></td>
@@ -45,20 +45,20 @@ Book your room now and enjoy a unique hospitality experience!
 
 <h1>📸 Screenshots</h1>
 
-Desk Version 💻
+**Desk Version 💻**:
 
 <table align="center">
   <tr>
     <th colspan="3" style="text-align:center; font-size:20px;">Landing Page</th>
   </tr>
   <tr>
-    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940746/Screenshot_28_huucmg.jpg" alt="Johnnie Walker Hotel Landing page" width="850"></td>
+    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940746/Screenshot_28_huucmg.jpg" alt="Johnnie Walker Hotel Landing Page" width="850"></td>
   </tr>
   <tr>
-    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940747/Screenshot_4_ru9rj1.jpg" alt="Johnnie Walker Hotel Landing page" width="850"></td>
+    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940747/Screenshot_4_ru9rj1.jpg" alt="Johnnie Walker Hotel Landing Page" width="850"></td>
   </tr>
   <tr>
-    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940748/Screenshot_27_gnguh0.jpg" alt="Johnnie Walker Hotel Landing page" width="850"></td>
+    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940748/Screenshot_27_gnguh0.jpg" alt="Johnnie Walker Hotel Landing Page" width="850"></td>
   </tr>
 </table>
 
@@ -67,10 +67,10 @@ Desk Version 💻
     <th colspan="2" style="text-align:center; font-size:20px;">Register and Login</th>
   </tr>
   <tr>
-    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940747/Screenshot_31_ghkt9e.jpg" alt="Johnnie Walker Hotel Register" width="850"></td>
+    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940747/Screenshot_31_ghkt9e.jpg" alt="Johnnie Walker Hotel Register Page" width="850"></td>
   </tr>
   <tr>
-    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940747/Screenshot_30_q1wmbv.jpg" alt="Johnnie Walker Hotel Login" width="850"></td>
+    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940747/Screenshot_30_q1wmbv.jpg" alt="Johnnie Walker Hotel Login Page" width="850"></td>
   </tr>
 </table>
 
@@ -79,20 +79,20 @@ Desk Version 💻
     <th colspan="1" style="text-align:center; font-size:20px;">Reserve Restaurant</th>
   </tr>
   <tr>
-    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940746/Screenshot_29_zguxvp.jpg" alt="Johnnie Walker Hotel Reserve Restaurant" width="850"></td>
+    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940746/Screenshot_29_zguxvp.jpg" alt="Johnnie Walker Hotel Reserve Restaurant Page" width="850"></td>
   </tr>
 </table>
 
-Mobile Version 📱
+**Mobile Version 📱**:
 
 <table align="center">
   <tr>
     <th colspan="3" style="text-align:center; font-size:20px;">Landing Page</th>
   </tr>
   <tr>
-    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740939698/Screenshot_4_tltu5m.jpg" alt="Johnnie Walker Hotel Landing page" width="250"></td>
-    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940235/Screenshot_4_hz9u8c.jpg" alt="Johnnie Walker Hotel Landing page" width="250"></td>
-    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740939737/Screenshot_28_vbemjj.jpg" alt="Johnnie Walker Hotel Landing page" width="250"></td>
+    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740939698/Screenshot_4_tltu5m.jpg" alt="Johnnie Walker Hotel Landing Page" width="250"></td>
+    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940235/Screenshot_4_hz9u8c.jpg" alt="Johnnie Walker Hotel Landing Page" width="250"></td>
+    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740939737/Screenshot_28_vbemjj.jpg" alt="Johnnie Walker Hotel Landing Page" width="250"></td>
   </tr>
 </table>
 
@@ -101,8 +101,8 @@ Mobile Version 📱
     <th colspan="2" style="text-align:center; font-size:20px;">Register and Login</th>
   </tr>
   <tr>
-    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940235/Screenshot_30_qflcml.jpg" alt="Johnnie Walker Hotel Register" width="250"></td>
-    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940235/Screenshot_29_mofgbc.jpg" alt="Johnnie Walker Hotel Login" width="250"></td>
+    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940235/Screenshot_30_qflcml.jpg" alt="Johnnie Walker Hotel Register Page" width="250"></td>
+    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940235/Screenshot_29_mofgbc.jpg" alt="Johnnie Walker Hotel Login Page" width="250"></td>
   </tr>
 </table>
 
@@ -111,7 +111,7 @@ Mobile Version 📱
     <th colspan="1" style="text-align:center; font-size:20px;">Reserve Restaurant</th>
   </tr>
   <tr>
-    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940235/Screenshot_27_dkfkbt.jpg" alt="Johnnie Walker Hotel Reserve Restaurant" width="250"></td>
+    <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740940235/Screenshot_27_dkfkbt.jpg" alt="Johnnie Walker Hotel Reserve Restaurant Page" width="250"></td>
   </tr>
 </table>
 
