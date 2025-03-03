@@ -4,7 +4,7 @@ import Select from "react-select";
 import Swal from "sweetalert2";
 import CountryNumbers from "../../data/CountryNumbers.json";
 
-const LoginRegister = () => {
+const LoginRegisterForm = () => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
@@ -306,4 +306,4 @@ const LoginRegister = () => {
   );
 };
 
-export default LoginRegister;
+export default LoginRegisterForm;

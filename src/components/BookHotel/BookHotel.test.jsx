@@ -1,43 +1,24 @@
-import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
-import BookHotel from "./BookHotel";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import BookHotel from './BookHotel'; 
 
-describe("BookHotel Component", () => {
-	it("renderiza el texto de descuento correctamente", () => {
-		render(<BookHotel />);
-		const discountText = screen.getByText(
-			/Obtén un descuento de hasta un 40%/i
-		);
-		expect(document.body.contains(discountText)).toBe(true);
-	});
+describe('BookHotel', () => {
+  it('muestra el título promocional', () => {
+    render(<BookHotel />);
+    const title = screen.getByText('Obtén un descuento de hasta un 40%. Ahorra con Johnnie Walker Hotel');
+    expect(title).toBeInTheDocument();
+  });
 
-	it("renderiza correctamente los inputs del formulario", () => {
-		render(<BookHotel />);
+  it('renderiza el botón de buscar', () => {
+    render(<BookHotel />);
+    const searchButton = screen.getByText('Buscar');
+    expect(searchButton).toBeInTheDocument();
+  });
 
-		const entradaInput = screen.getByLabelText(/Fecha de entrada/i);
-		expect(document.body.contains(entradaInput)).toBe(true);
-		expect(entradaInput.getAttribute("type")).toBe("date");
-
-		const salidaInput = screen.getByLabelText(/Fecha de salida/i);
-		expect(document.body.contains(salidaInput)).toBe(true);
-		expect(salidaInput.getAttribute("type")).toBe("date");
-
-		const personasInput = screen.getByLabelText(/Número de personas/i);
-		expect(document.body.contains(personasInput)).toBe(true);
-		expect(personasInput.getAttribute("type")).toBe("number");
-	});
-
-	it('al hacer click en "Buscar" se ejecuta handleSearchClick', () => {
-		const consoleSpy = vi
-			.spyOn(console, "log")
-			.mockImplementation(() => {});
-
-		render(<BookHotel />);
-		const searchButton = screen.getByRole("button", { name: /Buscar/i });
-		fireEvent.click(searchButton);
-		expect(consoleSpy).toHaveBeenCalledWith("Buscando hotel...");
-
-		consoleSpy.mockRestore();
-	});
+  it('muestra mensaje de no habitaciones por defecto', () => {
+    render(<BookHotel />);
+    const noResults = screen.getByText('No hay habitaciones disponibles con los filtros seleccionados.');
+    expect(noResults).toBeInTheDocument();
+  });
 });

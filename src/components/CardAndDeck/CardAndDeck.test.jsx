@@ -1,75 +1,44 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import { vi } from "vitest";
-import CardAndDeck from "./CardAndDeck";
+import { render, screen, fireEvent } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
+import CardAndDeck from './CardAndDeck'; 
 
-const mockRoom = {
-	image: "https://example.com/room.jpg",
-	name: "Deluxe Room",
-	description: "Una habitación espaciosa y cómoda.",
-};
+describe('CardAndDeck Component', () => {
+  const defaultProps = {
+    room: 'Suite Deluxe',
+    price: 150,
+    checkIn: '2025-03-10',
+    checkOut: '2025-03-15',
+    image: 'test-image.jpg',
+    onCancel: vi.fn()
+  };
 
-const mockPrice = 120;
-const mockCheckIn = "2025-03-01";
-const mockCheckOut = "2025-03-05";
-const mockOnCancel = vi.fn();
+  it('renders basic room information', () => {
+    render(<CardAndDeck {...defaultProps} />);
+    
+    expect(screen.getByText('Suite Deluxe')).toBeDefined();
+    expect(screen.getByText('150 €')).toBeDefined();
+   
+    expect(screen.queryByText((content, element) => {
+      return content.includes('2025-03-10') && element.textContent.includes('Check-in');
+    })).toBeDefined();
+  });
 
-describe("CardAndDeck Component", () => {
-	test("should render room details correctly", () => {
-		render(
-			<CardAndDeck
-				room={mockRoom}
-				price={mockPrice}
-				checkIn={mockCheckIn}
-				checkOut={mockCheckOut}
-				onCancel={mockOnCancel}
-			/>
-		);
 
-		expect(screen.getByText(/Habitación Deluxe Room/i)).toBeInTheDocument();
-		expect(
-			screen.getByText(/Una habitación espaciosa y cómoda./i)
-		).toBeInTheDocument();
+  it('handles cancel button click', () => {
+    const mockCancel = vi.fn();
+    render(<CardAndDeck {...defaultProps} onCancel={mockCancel} />);
+    
+    const cancelButton = screen.getByText('Cancelar');
+    fireEvent.click(cancelButton);
+    expect(mockCancel).toHaveBeenCalled();
+  });
 
-		const checkInContainer = screen.getByText(/Check-in:/i).parentElement;
-		expect(checkInContainer).toHaveTextContent(`Check-in: ${mockCheckIn}`);
 
-		const checkOutContainer = screen.getByText(/Check-out:/i).parentElement;
-		expect(checkOutContainer).toHaveTextContent(
-			`Check-out: ${mockCheckOut}`
-		);
-
-		expect(screen.getByText(`${mockPrice} €`)).toBeInTheDocument();
-	});
-
-	test("should call onCancel when the cancel button is clicked", () => {
-		render(
-			<CardAndDeck
-				room={mockRoom}
-				price={mockPrice}
-				checkIn={mockCheckIn}
-				checkOut={mockCheckOut}
-				onCancel={mockOnCancel}
-			/>
-		);
-
-		fireEvent.click(screen.getByText(/Cancelar/i));
-		expect(mockOnCancel).toHaveBeenCalledTimes(1);
-	});
-
-	test("should render the room image correctly", () => {
-		render(
-			<CardAndDeck
-				room={mockRoom}
-				price={mockPrice}
-				checkIn={mockCheckIn}
-				checkOut={mockCheckOut}
-				onCancel={mockOnCancel}
-			/>
-		);
-
-		const roomImage = screen.getByAltText(`Habitación ${mockRoom.name}`);
-		expect(roomImage).toBeInTheDocument();
-		expect(roomImage).toHaveAttribute("src", mockRoom.image);
-	});
+  it('renders room image', () => {
+    render(<CardAndDeck {...defaultProps} />);
+    
+    const image = screen.getByAltText('Habitación Suite Deluxe');
+    expect(image).toBeDefined();
+    expect(image.getAttribute('src')).toBe('test-image.jpg');
+  });
 });

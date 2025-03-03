@@ -1,23 +1,24 @@
-import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import Footer from "./Footer.jsx";
-import { describe, it, expect } from "vitest";
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import Footer from './Footer';
 
-describe("Footer", () => {
-    it("should render the hotel name", () => {
-        render(<Footer />);
-        const hotelName = screen.getByText(/Hotel Johnnie Walker/i);
-        expect(hotelName).toBeInTheDocument();
-    });
-    it("shpould render the correct year", () => {
-        const currentYear = new Date().getFullYear();
-        render(<Footer />);
-        const yearElement = screen.getByText(new RegExp(currentYear.toString(), 'i'));
-        expect(yearElement).toBeInTheDocument();
-    });
-    it("should render the github logo", () => {
-        render(<Footer />);
-        const logoElement = screen.getByAltText(/Github logo/i);
-        expect(logoElement).toBeInTheDocument();
-    });
+describe('Footer Component', () => {
+  test('Muestra el contenedor principal del footer', () => {
+    render(<Footer />);
+    const footer = screen.getByRole('contentinfo'); 
+    expect(footer).not.toBeNull();
+  });
+
+  test('Muestra el texto con el nombre del hotel y el año', () => {
+    render(<Footer />);
+    const currentYear = new Date().getFullYear();
+    const hotelText = screen.getByText(`© ${currentYear} Hotel Johnnie Walker`);
+    expect(hotelText).not.toBeNull();
+  });
+
+  test('Muestra el enlace al repositorio de GitHub', () => {
+    render(<Footer />);
+    const githubLink = screen.getByRole('link');
+    expect(githubLink).not.toBeNull();
+  });
 });

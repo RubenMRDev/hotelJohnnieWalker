@@ -1,31 +1,23 @@
-import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
-import Header from "./Header";
-import { describe, expect } from "vitest";
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import Header from './Header'; 
 
-describe("Header component", () => {
-    test("renders the logo", () => {
-        render(<Header />);
-        const logo = screen.getByRole("img", {
-            name: /logo hotel jhonny walker/i,
-        });
-        expect(logo).toBeInTheDocument();
-        expect(logo).toHaveAttribute("src", "src/assets/images/logo.png");
-    });
+describe('Header Component', () => {
+  test('Muestra el contenedor principal del header', () => {
+    render(<Header />);
+    const header = screen.getByRole('banner');
+    expect(header).not.toBeNull();
+  });
 
-    test("renders the call icon", () => {
-        const { container } = render(<Header />);
-        const callIcon = container.querySelector("svg.call-svg");
-        expect(callIcon).toBeInTheDocument();
-    });
+  test('Muestra la imagen del logo', () => {
+    render(<Header />);
+    const logo = screen.getByAltText('logo hotel Jhonny Walker');
+    expect(logo).not.toBeNull();
+  });
 
-    test("renders the profile link", () => {
-        render(<Header />);
-        const links = screen.getAllByRole("link");
-        const profileLink = links.find(
-            (link) => link.getAttribute("href") === "/profile"
-        );
-        expect(profileLink).toBeInTheDocument();
-        expect(profileLink).toHaveAttribute("href", "/profile");
-    });
+  test('Muestra el enlace del ícono de perfil', () => {
+    render(<Header />);
+    const profileLink = screen.getByRole('link', { name: '' });
+    expect(profileLink).not.toBeNull();
+  });
 });

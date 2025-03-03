@@ -1,29 +1,53 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import { describe, it, expect } from "vitest";
-import LoginRegisterForm from "./LoginRegisterForm";
+import { render, screen, fireEvent } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';  // Importa BrowserRouter
+import LoginRegisterForm from './LoginRegisterForm';
+import '@testing-library/jest-dom';
 
-describe("LoginRegisterForm", () => {
+describe('LoginRegisterForm', () => {
+  
+  test('debe renderizar el botón de enviar el formulario', () => {
+    render(
+      <BrowserRouter>  {/* Asegúrate de envolver con BrowserRouter */}
+        <LoginRegisterForm />
+      </BrowserRouter>
+    );
 
-  it("toggles between login and register forms", () => {
-    render(<LoginRegisterForm />);
-    const toggleButton = screen.getByText(/Regístrate/i);
+    // Verifica que el botón de registro está presente
+    const registerTab = screen.getByRole('button', { name: /Regístrate/i });
 
-    fireEvent.click(toggleButton);
+    // Aquí debes usar registerTab, no buttonRegister
+    expect(registerTab).toBeInTheDocument();
 
-    expect(screen.getByText(/Regístrate/i)).toBeInTheDocument();
+    // Cambiar a la pestaña de login
+    const loginTab = screen.getByRole('button', { name: /Inicia Sesión/i });
+    fireEvent.click(loginTab);
+
+    // Verifica que el botón cambia a 'Entrar'
+    const buttonLogin = screen.getByRole('button', { name: /Entrar/i });
+    expect(buttonLogin).toBeInTheDocument();
   });
 
-  it("toggles between login and register forms", () => {
-    render(<LoginRegisterForm />);
-    const toggleButton = screen.getByText(/Inicia Sesión/i);
+  test('debe renderizar la pestaña de login', () => {
+    render(
+      <BrowserRouter>  {/* Asegúrate de envolver con BrowserRouter */}
+        <LoginRegisterForm />
+      </BrowserRouter>
+    );
 
-    fireEvent.click(toggleButton);
-
-    expect(screen.getByText(/Inicia Sesión/i)).toBeInTheDocument();
+    // Verifica que la pestaña de login está presente
+    const loginTab = screen.getByRole('button', { name: /Inicia Sesión/i });
+    expect(loginTab).toBeInTheDocument();
   });
-  test("Show the default login form.", () => {
-    render(<LoginRegisterForm />);
-    expect(screen.getByText("Inicia Sesión")).toBeInTheDocument();
+
+  test('debe renderizar la pestaña de registro', () => {
+    render(
+      <BrowserRouter>  {/* Asegúrate de envolver con BrowserRouter */}
+        <LoginRegisterForm />
+      </BrowserRouter>
+    );
+
+    // Verifica que la pestaña de registro está presente
+    const registerTab = screen.getByRole('button', { name: /Regístrate/i });
+    expect(registerTab).toBeInTheDocument();
   });
 });

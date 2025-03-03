@@ -33,7 +33,7 @@ const ExteriorViewCard = () => {
             />
           </AnimatePresence>
           <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
-            <button onClick={prevImage}>
+            <button onClick={prevImage} aria-label="Previous">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-10 h-10 text-white opacity-70 hover:opacity-100 transition"
@@ -46,7 +46,7 @@ const ExteriorViewCard = () => {
           </div>
 
           <div className="absolute top-1/2 right-4 transform -translate-y-1/2">
-            <button onClick={nextImage}>
+            <button onClick={nextImage} aria-label="Next">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-10 h-10 text-white opacity-70 hover:opacity-100 transition"
