@@ -165,28 +165,15 @@ Book your room now and enjoy a unique hospitality experience!
 
 <h1>🧪 Testing</h1>
 
-<table border="1" align="center">
-  <thead>
-    <tr>
-      <th>Test Name</th>
-      <th>Screenshot</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Restaurant Test</td>
-      <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740993542/Screenshot_h5e176.png" width="650"></td>
-    </tr>
-    <tr>
-      <td>Main Hotel Test</td>
-      <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740951965/Screenshot_4_n18uys.jpg" width="650"></td>
-    </tr>
-    <tr>
-      <td>Restaurant Card Test</td>
-      <td><img src="https://res.cloudinary.com/dimlqpphf/image/upload/v1740951965/Screenshot_27_xtnumz.jpg" width="650"></td>
-    </tr>
-  </tbody>
-</table>
+<p align="center">
+  <strong>Resumen de pruebas</strong>
+</p>
+
+<p align="center">
+  <img src="https://res.cloudinary.com/dieclsppc/image/upload/v1741197953/Test_h1shev.png" width="700" alt="Resumen de pruebas">
+</p>
+
+
 
 <h1>📈 Methodology</h1>
 
