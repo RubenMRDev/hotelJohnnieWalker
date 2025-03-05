@@ -166,7 +166,7 @@ Book your room now and enjoy a unique hospitality experience!
 <h1>🧪 Testing</h1>
 
 <p align="center">
-  <strong>Resumen de pruebas</strong>
+  <strong>Test Summary</strong>
 </p>
 
 <p align="center">
